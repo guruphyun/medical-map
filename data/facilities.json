@@ -402,12 +402,12 @@
   {
     "id": 42,
     "name": "춘천인성병원",
-    "address": "강원도 춘천시 낙원동 8의 1번지",
-    "lat": 37.8810569,
-    "lng": 127.7297641,
+    "address": "강원도 춘천시 금강로 39",
+    "lat": 37.881543713568,
+    "lng": 127.726182263154,
     "region1": "강원특별자치도",
     "region2": "춘천시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 43,
@@ -782,12 +782,12 @@
   {
     "id": 82,
     "name": "삼영의료재단 둔산병원",
-    "address": "대전 서구 괴정동 3-184.5.6층 둔산병원",
-    "lat": 36.3551786,
-    "lng": 127.3838487,
+    "address": "대전 서구 괴정동 3-18",
+    "lat": 36.3419223233944,
+    "lng": 127.386729101031,
     "region1": "대전광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 83,
@@ -2732,12 +2732,12 @@
   {
     "id": 330,
     "name": "한림대학교 강동성심병원",
-    "address": "도로명주소서울특별시 강동구 성안로 150강동성심병원",
-    "lat": null,
-    "lng": null,
+    "address": "서울특별시 강동구 성안로 150",
+    "lat": 37.5361555499193,
+    "lng": 127.135335702535,
     "region1": "서울특별시",
     "region2": "강동구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 332,
@@ -4412,12 +4412,12 @@
   {
     "id": 527,
     "name": "태영21병원",
-    "address": "광주 서구 무진대로 965태영21내과 8층",
-    "lat": 35.1521401,
-    "lng": 126.8900561,
+    "address": "광주 서구 무진대로 965",
+    "lat": 35.1615431916388,
+    "lng": 126.886063105583,
     "region1": "광주광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 528,
@@ -5302,12 +5302,12 @@
   {
     "id": 624,
     "name": "늘좋은내과의원",
-    "address": "서울특별시 광진구 천호대로 548301호",
-    "lat": 37.5362696,
-    "lng": 127.0879515,
+    "address": "서울특별시 광진구 천호대로 548",
+    "lat": 37.5568272074713,
+    "lng": 127.07899226716,
     "region1": "서울특별시",
     "region2": "광진구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 625,
@@ -5442,12 +5442,12 @@
   {
     "id": 638,
     "name": "서광병원",
-    "address": "광주광역시 서구 금화로 596",
-    "lat": 35.132325,
-    "lng": 126.8586724,
+    "address": "광주광역시 서구 금화로 59",
+    "lat": 35.1322667553343,
+    "lng": 126.855420931458,
     "region1": "광주광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 639,
@@ -5582,12 +5582,12 @@
   {
     "id": 652,
     "name": "부산봉생병원",
-    "address": "부산광역시 동구 중앙대로 401401 (좌천동) 부산봉생병원",
-    "lat": 35.129,
-    "lng": 129.0455,
+    "address": "부산광역시 동구 중앙대로 401",
+    "lat": 35.1308736761734,
+    "lng": 129.050556556591,
     "region1": "부산광역시",
     "region2": "동구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 653,
@@ -5632,12 +5632,12 @@
   {
     "id": 657,
     "name": "청라여성병원",
-    "address": "인천광역시 서구 연희동 799-3~799-7199-3 청라여성병원",
-    "lat": 37.545,
-    "lng": 126.676,
+    "address": "인천광역시 서구 연희동 799-3",
+    "lat": 37.53340920427264,
+    "lng": 126.65026204603603,
     "region1": "인천광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 658,
@@ -6132,12 +6132,12 @@
   {
     "id": 707,
     "name": "세종국민건강의원1",
-    "address": "세종특별자치시  마음로 272-43층 4층",
-    "lat": 36.5133449,
-    "lng": 127.2295167,
+    "address": "세종특별자치시 가온로 8",
+    "lat": 36.4914608894886,
+    "lng": 127.254870859066,
     "region1": "세종특별자치시",
     "region2": "마음로",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 708,
@@ -7862,12 +7862,12 @@
   {
     "id": 898,
     "name": "바른생각병원",
-    "address": "대전 서구 청사로 1285-8층(칼릭스빌딩)",
-    "lat": 36.3551786,
-    "lng": 127.3838487,
+    "address": "대전 서구 청사로 128",
+    "lat": 36.3594532915535,
+    "lng": 127.377867625055,
     "region1": "대전광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 899,
@@ -8572,12 +8572,12 @@
   {
     "id": 980,
     "name": "KMI 제주센터",
-    "address": "제주특별자치도 서귀포시 솔오름로 611,2층",
-    "lat": 33.252845,
-    "lng": 126.5610278,
+    "address": "제주특별자치도 서귀포시 솔오름로 611",
+    "lat": 33.283757394263,
+    "lng": 126.559669876583,
     "region1": "제주특별자치도",
     "region2": "서귀포시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 981,
@@ -8832,12 +8832,12 @@
   {
     "id": 1006,
     "name": "동명병원",
-    "address": "광주 동구 동명로70번길 51~11층",
-    "lat": 35.1462,
-    "lng": 126.9229,
+    "address": "광주 동구 동명로70번길 5",
+    "lat": 35.1505378195774,
+    "lng": 126.928695215942,
     "region1": "광주광역시",
     "region2": "동구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1007,
@@ -9042,12 +9042,12 @@
   {
     "id": 1031,
     "name": "서대전속편한내과의원",
-    "address": "대전 중구 중앙로 104,5층",
-    "lat": 36.3254103,
-    "lng": 127.4211723,
+    "address": "대전 중구 중앙로 10",
+    "lat": 36.3224197449796,
+    "lng": 127.413546867311,
     "region1": "대전광역시",
     "region2": "중구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1032,
@@ -9082,12 +9082,12 @@
   {
     "id": 1035,
     "name": "구리웰니스건강검진센터",
-    "address": "경기 구리시 갈매순환로 154118~125호, 127~131호,134호(갈매동,현대테라타워 구리갈매)",
-    "lat": 37.5935948,
-    "lng": 127.1297917,
+    "address": "경기 구리시 갈매순환로 154",
+    "lat": 37.6330476032473,
+    "lng": 127.123299942999,
     "region1": "경기도",
     "region2": "구리시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1036,
@@ -9122,12 +9122,12 @@
   {
     "id": 1039,
     "name": "하남보바스병원",
-    "address": "경기 하남시 미사강변중앙로 50155-7",
-    "lat": 37.5393019,
-    "lng": 127.2149406,
+    "address": "경기 하남시 미사강변중앙로 50",
+    "lat": 37.5514393379003,
+    "lng": 127.193800373446,
     "region1": "경기도",
     "region2": "하남시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1040,
@@ -9142,12 +9142,12 @@
   {
     "id": 1041,
     "name": "부산제2항운병원",
-    "address": "부산 부산진구 범일로 1866~12층",
-    "lat": 35.1632335,
-    "lng": 129.0529462,
+    "address": "부산 부산진구 범일로 186",
+    "lat": 35.1466802309417,
+    "lng": 129.059622514709,
     "region1": "부산광역시",
     "region2": "부산진구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1042,
@@ -9192,12 +9192,12 @@
   {
     "id": 1046,
     "name": "비케이내과의원",
-    "address": "울산 중구 번영로 4874필지 제 2FC호",
-    "lat": 35.5693863,
-    "lng": 129.3327997,
+    "address": "울산 중구 번영로 487",
+    "lat": 35.5650514763926,
+    "lng": 129.336658545398,
     "region1": "울산광역시",
     "region2": "중구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1047,
@@ -9302,12 +9302,12 @@
   {
     "id": 1062,
     "name": "내일내과",
-    "address": "서울 금천구 금하로 720307호",
-    "lat": 37.4565,
-    "lng": 126.8954,
+    "address": "서울 금천구 금하로 720",
+    "lat": 37.4504425566682,
+    "lng": 126.909481684032,
     "region1": "서울특별시",
     "region2": "금천구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1063,
@@ -9382,12 +9382,12 @@
   {
     "id": 1071,
     "name": "서울프라임검진센터",
-    "address": "경기 의정부시 천보로 64504로,505호,6층",
-    "lat": 37.7380747,
-    "lng": 127.0339665,
+    "address": "경기 의정부시 천보로 64",
+    "lat": 37.7452180712739,
+    "lng": 127.094478868679,
     "region1": "경기도",
     "region2": "의정부시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1072,
@@ -9422,12 +9422,12 @@
   {
     "id": 1075,
     "name": "새나래병원",
-    "address": "광주 북구 첨단연신로 1012-9층 (신용동)",
-    "lat": 35.1653215,
-    "lng": 126.9093193,
+    "address": "광주 북구 첨단연신로 101",
+    "lat": 35.2070115110585,
+    "lng": 126.864038287967,
     "region1": "광주광역시",
     "region2": "북구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1076,
@@ -9492,12 +9492,12 @@
   {
     "id": 1000000002,
     "name": "강동천호내과",
-    "address": "서울 강동구 올림픽로 664211호",
-    "lat": 37.53,
-    "lng": 127.1237,
+    "address": "서울 강동구 올림픽로 664",
+    "lat": 37.540555377209,
+    "lng": 127.124975762766,
     "region1": "서울특별시",
     "region2": "강동구",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1000000003,
@@ -9522,12 +9522,12 @@
   {
     "id": 1000000005,
     "name": "더바른내과",
-    "address": "경남 양산시 덕계로 61201~203",
-    "lat": 35.3349979,
-    "lng": 129.0370582,
+    "address": "경남 양산시 덕계로 61",
+    "lat": 35.3737057822316,
+    "lng": 129.150315504549,
     "region1": "경상남도",
     "region2": "양산시",
-    "geocode_quality": "failed"
+    "geocode_quality": "kml_fixed"
   },
   {
     "id": 1000000006,
