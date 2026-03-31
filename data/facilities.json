@@ -123,11 +123,11 @@
     "id": 14,
     "name": "동마산병원",
     "address": "경상남도 창원시 마산회원구 석전동15대로 681",
-    "lat": 35.227956,
-    "lng": 128.6818586,
+    "lat": 35.23390766084908,
+    "lng": 128.57826665747214,
     "region1": "경상남도",
     "region2": "창원시",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 15,
@@ -263,11 +263,11 @@
     "id": 28,
     "name": "제일병원",
     "address": "서울특별시 중구 서애로1길 17제일병원",
-    "lat": 37.5636559,
-    "lng": 126.9975097,
+    "lat": 35.17954725610237,
+    "lng": 128.09038098975122,
     "region1": "서울특별시",
     "region2": "중구",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 29,
@@ -522,12 +522,12 @@
   {
     "id": 55,
     "name": "성지병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "강원특별자치도 원주시 원일로 22",
+    "lat": 37.34552747376664,
+    "lng": 127.95418749214005,
+    "region1": "강원특별자치도",
+    "region2": "원주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 56,
@@ -582,12 +582,12 @@
   {
     "id": 61,
     "name": "KMI한국의학연구소광주센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "광주 서구 상무중앙로 58",
+    "lat": 35.15210354500002,
+    "lng": 126.84891179063459,
+    "region1": "광주",
+    "region2": "서구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 62,
@@ -602,22 +602,22 @@
   {
     "id": 63,
     "name": "CMI중앙의료재단",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "대전 서구 한밭대로 797",
+    "lat": 36.35836525522887,
+    "lng": 127.38745039853053,
+    "region1": "대전",
+    "region2": "서구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 64,
     "name": "KMI한국의학연구소부산센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "부산 동구 조방로 14",
+    "lat": 35.1385882221141,
+    "lng": 129.062964459188,
+    "region1": "부산",
+    "region2": "동구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 65,
@@ -712,12 +712,12 @@
   {
     "id": 74,
     "name": "마산연세병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경남 창원시 마산합포구 3.15대로 76",
+    "lat": 35.1863384496289,
+    "lng": 128.561595089078,
+    "region1": "경남",
+    "region2": "창원시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 75,
@@ -752,22 +752,22 @@
   {
     "id": 79,
     "name": "청주의료원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "충북 청주시 서원구 흥덕로 48",
+    "lat": 36.64029699525208,
+    "lng": 127.47327783135803,
+    "region1": "충북",
+    "region2": "청주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 80,
     "name": "한신메디피아",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 서초구 잠원로 94",
+    "lat": 37.5128362173547,
+    "lng": 127.006723198147,
+    "region1": "서울",
+    "region2": "서초구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 81,
@@ -792,12 +792,12 @@
   {
     "id": 83,
     "name": "서울연합메디컬의원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "충북 청주시 상당구 상당로69번길 15",
+    "lat": 36.634255382725996,
+    "lng": 127.48966582911501,
+    "region1": "충북",
+    "region2": "청주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 84,
@@ -832,22 +832,22 @@
   {
     "id": 87,
     "name": "인제대학교일산백병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 고양시 일산서구 주화로 170",
+    "lat": 37.67425716702879,
+    "lng": 126.75044099326492,
+    "region1": "경기",
+    "region2": "고양시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 88,
     "name": "마더스병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 남구 화합로 107",
+    "lat": 35.534332610019995,
+    "lng": 129.34054342021085,
+    "region1": "울산",
+    "region2": "남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 89,
@@ -882,52 +882,52 @@
   {
     "id": 92,
     "name": "고려대학교구로병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 구로구 구로동로 148",
+    "lat": 37.49213093447941,
+    "lng": 126.8847398636146,
+    "region1": "서울",
+    "region2": "구로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 93,
     "name": "필립메디컬센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 성남시 분당구 황새울로311번길 10",
+    "lat": 37.38523360568578,
+    "lng": 127.11979929863104,
+    "region1": "경기",
+    "region2": "성남시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 94,
     "name": "제일병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경남 진주시 진주대로 885",
+    "lat": 35.17954725610237,
+    "lng": 128.09038098975122,
+    "region1": "경남",
+    "region2": "진주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 95,
     "name": "검단탑종합병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "인천 서구 청마로19번길 5",
+    "lat": 37.592460678363935,
+    "lng": 126.67110307083725,
+    "region1": "인천",
+    "region2": "서구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 96,
     "name": "하트스캔",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 테헤란로114길 38",
+    "lat": 37.507123963697296,
+    "lng": 127.06699273654138,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 98,
@@ -942,12 +942,12 @@
   {
     "id": 99,
     "name": "아주대학교병원,아주대학병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 수원시 영통구 월드컵로 164",
+    "lat": 37.27944594804333,
+    "lng": 127.04753911133689,
+    "region1": "경기",
+    "region2": "수원시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 100,
@@ -962,22 +962,22 @@
   {
     "id": 101,
     "name": "KMI한국의학연구소수원센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 수원시 권선구 동수원로 232",
+    "lat": 37.250258452353876,
+    "lng": 127.03468925944415,
+    "region1": "경기",
+    "region2": "수원시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 102,
     "name": "구로구청보건소",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 구로구 구로중앙로28길 66",
+    "lat": 37.50010922516876,
+    "lng": 126.88932582970455,
+    "region1": "서울",
+    "region2": "구로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 103,
@@ -1122,12 +1122,12 @@
   {
     "id": 118,
     "name": "한국건강관리협회-제주",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "제주특별자치도 제주시 연북로 111",
+    "lat": 33.48204252009554,
+    "lng": 126.49339376269695,
+    "region1": "제주특별자치도",
+    "region2": "제주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 119,
@@ -1252,62 +1252,62 @@
   {
     "id": 131,
     "name": "동강병원-B형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 태화로 239",
+    "lat": 35.5534080798043,
+    "lng": 129.301944237456,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 132,
     "name": "동강병원-C형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 태화로 239",
+    "lat": 35.5534080798043,
+    "lng": 129.301944237456,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 133,
     "name": "울산중앙병원-A형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 남구 문수로 472",
+    "lat": 35.532257481936426,
+    "lng": 129.30472154378936,
+    "region1": "울산",
+    "region2": "남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 134,
     "name": "울산중앙병원-B형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 남구 문수로 472",
+    "lat": 35.532257481936426,
+    "lng": 129.30472154378936,
+    "region1": "울산",
+    "region2": "남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 135,
     "name": "울산병원-A형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 남구 월평로171번길 13",
+    "lat": 35.54622072837107,
+    "lng": 129.32310107677893,
+    "region1": "울산",
+    "region2": "남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 136,
     "name": "울산병원-B형",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 남구 월평로171번길 13",
+    "lat": 35.54622072837107,
+    "lng": 129.32310107677893,
+    "region1": "울산",
+    "region2": "남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 137,
@@ -1342,22 +1342,22 @@
   {
     "id": 140,
     "name": "분당제생병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 성남시 분당구 서현로180번길 20",
+    "lat": 37.3881744685617,
+    "lng": 127.121638950154,
+    "region1": "경기",
+    "region2": "성남시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 141,
     "name": "분당서울대병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 성남시 분당구 구미로173번길 82",
+    "lat": 37.351906561232546,
+    "lng": 127.12321698055528,
+    "region1": "경기",
+    "region2": "성남시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 142,
@@ -1372,22 +1372,22 @@
   {
     "id": 143,
     "name": "의료법인메디피아",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 성남시 분당구 중앙공원로40번길 32",
+    "lat": 37.37868905701224,
+    "lng": 127.13203592592673,
+    "region1": "경기",
+    "region2": "성남시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 144,
     "name": "서울속편한내과",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 동대문구 고산자로 399",
+    "lat": 37.57525790561615,
+    "lng": 127.03778727186848,
+    "region1": "서울",
+    "region2": "동대문구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 145,
@@ -1398,16 +1398,6 @@
     "region1": "대전광역시",
     "region2": "유성구",
     "geocode_quality": "kakao_full"
-  },
-  {
-    "id": 146,
-    "name": "KMI한국의학연구소광주센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
   },
   {
     "id": 147,
@@ -1432,12 +1422,12 @@
   {
     "id": 150,
     "name": "인제대학교서울백병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 노원구 동일로 1342",
+    "lat": 37.648574065497726,
+    "lng": 127.06310485277629,
+    "region1": "서울",
+    "region2": "노원구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 151,
@@ -1472,22 +1462,22 @@
   {
     "id": 156,
     "name": "하나로의료재단강남센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 테헤란로 326",
+    "lat": 37.5035394906048,
+    "lng": 127.047024882955,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 157,
     "name": "하나로의료재단종로센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 종로구 종로 33",
+    "lat": 37.57096204520516,
+    "lng": 126.98143798377502,
+    "region1": "서울",
+    "region2": "종로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 158,
@@ -1502,142 +1492,52 @@
   {
     "id": 159,
     "name": "KMI한국의학연구소여의도센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 영등포구 국제금융로2길 24",
+    "lat": 37.52430207966344,
+    "lng": 126.92482758294145,
+    "region1": "서울",
+    "region2": "영등포구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 160,
     "name": "KMI한국의학연구소광화문센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 161,
-    "name": "한신메디피아",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 종로구 세종대로 149",
+    "lat": 37.569570857647165,
+    "lng": 126.97614081597274,
+    "region1": "서울",
+    "region2": "종로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 162,
     "name": "강남세브란스병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 언주로 211",
+    "lat": 37.4928060845179,
+    "lng": 127.046310279737,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 163,
     "name": "강남서울대병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 164,
-    "name": "KMI한국의학연구소수원센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 165,
-    "name": "KMI한국의학연구소부산센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 167,
-    "name": "KMI한국의학연구소수원센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 171,
-    "name": "인제대학교서울백병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 172,
-    "name": "하나로의료재단강남센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 173,
-    "name": "하나로의료재단종로센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 174,
-    "name": "하트스캔",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 175,
-    "name": "한신메디피아",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 테헤란로 152",
+    "lat": 37.5001824781151,
+    "lng": 127.0364409567391,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 176,
     "name": "해정병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 종로구 삼일대로 461",
+    "lat": 37.57588923147141,
+    "lng": 126.98531740378797,
+    "region1": "서울",
+    "region2": "종로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 177,
@@ -1650,74 +1550,64 @@
     "geocode_quality": "kakao_full"
   },
   {
-    "id": 178,
-    "name": "강남세브란스병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
     "id": 179,
     "name": "서울아산병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 송파구 올림픽로43길 88",
+    "lat": 37.526200614508994,
+    "lng": 127.10761409822122,
+    "region1": "서울",
+    "region2": "송파구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 180,
     "name": "삼성서울병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 일원로 81",
+    "lat": 37.48852545508141,
+    "lng": 127.08509256703239,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 181,
     "name": "가톨릭대학교서울성모병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 서초구 반포대로 222",
+    "lat": 37.50170169277866,
+    "lng": 127.00476118110912,
+    "region1": "서울",
+    "region2": "서초구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 182,
     "name": "동강병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 태화로 239",
+    "lat": 35.5534080798043,
+    "lng": 129.301944237456,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 183,
     "name": "동강병원(기본타입)",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 태화로 239",
+    "lat": 35.5534080798043,
+    "lng": 129.301944237456,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 184,
     "name": "동강병원(소화기타입)",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 태화로 239",
+    "lat": 35.5534080798043,
+    "lng": 129.301944237456,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 185,
@@ -1782,46 +1672,26 @@
   {
     "id": 191,
     "name": "KMI한국의학연구소강남센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 테헤란로 411",
+    "lat": 37.50549308320158,
+    "lng": 127.05086012697603,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 192,
     "name": "KMI한국의학연구소대구센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "대구 중구 중앙대로66길 20",
+    "lat": 35.861248430063974,
+    "lng": 128.59329004684105,
+    "region1": "대구",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 193,
     "name": "KMI 대전센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 194,
-    "name": "KMI한국의학연구소여의도센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 195,
-    "name": "KMI한국의학연구소광화문센터",
     "address": "nan",
     "lat": 36.1564688,
     "lng": 127.014227,
@@ -1868,26 +1738,6 @@
     "region1": "경기도",
     "region2": "성남시",
     "geocode_quality": "kakao_full"
-  },
-  {
-    "id": 200,
-    "name": "강남서울대병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 201,
-    "name": "KMI한국의학연구소부산센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
   },
   {
     "id": 202,
@@ -1942,12 +1792,12 @@
   {
     "id": 212,
     "name": "한국건강관리협회울산지부",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 중구 번영로 360",
+    "lat": 35.557028980284535,
+    "lng": 129.32664827272671,
+    "region1": "울산",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 222,
@@ -3372,12 +3222,12 @@
   {
     "id": 409,
     "name": "제일정형외과병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강남구 영동대로 726",
+    "lat": 37.5227972098551,
+    "lng": 127.0560642631035,
+    "region1": "서울",
+    "region2": "강남구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 410,
@@ -3543,11 +3393,11 @@
     "id": 428,
     "name": "삼성송암내과",
     "address": "대전광역시 서구 문예로 107삼성송암내과",
-    "lat": 36.3551786,
-    "lng": 127.3838487,
+    "lat": 36.356314634853,
+    "lng": 127.387866943151,
     "region1": "대전광역시",
     "region2": "서구",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 429,
@@ -4142,12 +3992,12 @@
   {
     "id": 500,
     "name": "한국병원(제주)",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "제주특별자치도 제주시 서광로 193",
+    "lat": 33.5003911639049,
+    "lng": 126.5167287678298,
+    "region1": "제주특별자치도",
+    "region2": "제주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 501,
@@ -4832,22 +4682,22 @@
   {
     "id": 572,
     "name": "신촌세브란스병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 서대문구 연세로 50-1",
+    "lat": 37.56225233153921,
+    "lng": 126.94096340991969,
+    "region1": "서울",
+    "region2": "서대문구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 573,
     "name": "KMI 한국의학연구소",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 종로구 세종대로 149",
+    "lat": 37.569570857647165,
+    "lng": 126.97614081597274,
+    "region1": "서울",
+    "region2": "종로구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 574,
@@ -4912,12 +4762,12 @@
   {
     "id": 580,
     "name": "메디피아메디피움",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 성남시 분당구 분당내곡로 159",
+    "lat": 37.398075739287144,
+    "lng": 127.11260198225824,
+    "region1": "경기",
+    "region2": "성남시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 581,
@@ -4962,12 +4812,12 @@
   {
     "id": 585,
     "name": "성민병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "인천 서구 신석로 70",
+    "lat": 37.509790988986275,
+    "lng": 126.6698668558917,
+    "region1": "인천",
+    "region2": "서구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 586,
@@ -5202,12 +5052,12 @@
   {
     "id": 611,
     "name": "대한병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 강북구 도봉로 301",
+    "lat": 37.6354668281537,
+    "lng": 127.02267251769,
+    "region1": "서울",
+    "region2": "강북구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 612,
@@ -5593,21 +5443,21 @@
     "id": 653,
     "name": "경희중앙병원",
     "address": "경상남도 김해시 외동 1044-5~1044-61044-5  경희의료원 교육협력 중앙병원(구. 김해중앙병원)",
-    "lat": 35.2310947,
-    "lng": 128.8908228,
+    "lat": 37.4734663233956,
+    "lng": 127.142704771687,
     "region1": "경상남도",
     "region2": "김해시",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 654,
     "name": "목포시의료원",
     "address": "전라남도 목포시 용해동 132-3~137-621333-1 목포의료원",
-    "lat": 34.7903335,
-    "lng": 126.3847547,
+    "lat": 34.80401775627879,
+    "lng": 126.40539333709523,
     "region1": "전라남도",
     "region2": "목포시",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 655,
@@ -5672,22 +5522,22 @@
   {
     "id": 661,
     "name": "봄여성병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 고양시 덕양구 중앙로 622",
+    "lat": 37.627312776726235,
+    "lng": 126.82960092735259,
+    "region1": "경기",
+    "region2": "고양시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 662,
     "name": "자인메디병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경기 고양시 덕양구 중앙로 555",
+    "lat": 37.623184477559874,
+    "lng": 126.83532511736207,
+    "region1": "경기",
+    "region2": "고양시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 663,
@@ -5718,16 +5568,6 @@
     "region1": "제주특별자치도",
     "region2": "제주시",
     "geocode_quality": "kakao_full"
-  },
-  {
-    "id": 666,
-    "name": "(TEST)유비케어",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
   },
   {
     "id": 667,
@@ -5982,12 +5822,12 @@
   {
     "id": 692,
     "name": "청라여성병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "인천 서구 중봉대로 602",
+    "lat": 37.53340920427264,
+    "lng": 126.65026204603603,
+    "region1": "인천",
+    "region2": "서구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 693,
@@ -6198,26 +6038,6 @@
     "region1": "경기도",
     "region2": "수원시",
     "geocode_quality": "kakao_full"
-  },
-  {
-    "id": 714,
-    "name": "귀하는 출장검진 대상으로 예약이 필요없습니다",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 715,
-    "name": "장소: 강남 or 합정사옥(추후 일정별도안내)",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
   },
   {
     "id": 716,
@@ -6452,12 +6272,12 @@
   {
     "id": 740,
     "name": "울산시티병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "울산 북구 산업로 1007",
+    "lat": 35.58284592844999,
+    "lng": 129.35899430315587,
+    "region1": "울산",
+    "region2": "북구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 742,
@@ -6472,12 +6292,12 @@
   {
     "id": 743,
     "name": "가톨릭대학교 은평성모병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 은평구 통일로 1021",
+    "lat": 37.63361392181593,
+    "lng": 126.9163000263373,
+    "region1": "서울",
+    "region2": "은평구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 744,
@@ -6682,22 +6502,12 @@
   {
     "id": 764,
     "name": "영주기독병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 765,
-    "name": "영주기독병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "경북 영주시 구성로 380",
+    "lat": 36.8251623388781,
+    "lng": 128.621149137542,
+    "region1": "경북",
+    "region2": "영주시",
+    "geocode_quality": "keyword"
   },
   {
     "id": 766,
@@ -6780,16 +6590,6 @@
     "geocode_quality": "kakao_full"
   },
   {
-    "id": 775,
-    "name": "전자계약_테스트센터",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
     "id": 776,
     "name": "새건병원",
     "address": "인천광역시 미추홀구 경인로 430 주안빌딩",
@@ -6822,22 +6622,12 @@
   {
     "id": 780,
     "name": "장튼위튼병원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
-  },
-  {
-    "id": 781,
-    "name": "테스트검진기관",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 관악구 남부순환로 1867",
+    "lat": 37.4797716682968,
+    "lng": 126.957326963198,
+    "region1": "서울",
+    "region2": "관악구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 782,
@@ -7022,12 +6812,12 @@
   {
     "id": 800,
     "name": "녹십자아이메드 강북의원",
-    "address": "nan",
-    "lat": 36.1564688,
-    "lng": 127.014227,
-    "region1": "기타",
-    "region2": "기타",
-    "geocode_quality": "no_address"
+    "address": "서울 중구 을지로 170",
+    "lat": 37.56613954356158,
+    "lng": 126.99732759512656,
+    "region1": "서울",
+    "region2": "중구",
+    "geocode_quality": "keyword"
   },
   {
     "id": 801,
@@ -9393,11 +9183,11 @@
     "id": 1072,
     "name": "메디인병원",
     "address": "경기 파주시 금릉역로 1901동",
-    "lat": 37.7598955,
-    "lng": 126.7801502,
+    "lat": 37.76107164615066,
+    "lng": 126.76653807409672,
     "region1": "경기도",
     "region2": "파주시",
-    "geocode_quality": "failed"
+    "geocode_quality": "keyword"
   },
   {
     "id": 1073,
