@@ -1,0 +1,361 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 14px;
+  color: #333;
+  background: #f5f5f5;
+}
+
+/* ── 헤더 ── */
+.header {
+  background: #1565C0;
+  color: white;
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* ── 메인 레이아웃 ── */
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── 필터 패널 ── */
+.filter-panel {
+  width: 240px;
+  min-width: 200px;
+  background: white;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-section {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1565C0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.filter-label {
+  display: block;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+
+.filter-label:first-of-type {
+  margin-top: 0;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #1565C0;
+  box-shadow: 0 0 0 2px rgba(21,101,192,0.15);
+}
+
+.filter-select:disabled {
+  background: #f5f5f5;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.reset-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 9px;
+  background: #1565C0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reset-btn:hover {
+  background: #0D47A1;
+}
+
+.filter-help {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+}
+
+.click-status {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #E3F2FD;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #1565C0;
+  min-height: 30px;
+  line-height: 1.5;
+}
+
+.stats-section {
+  margin-top: auto;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: none;
+}
+
+.stats {
+  font-size: 11px;
+  color: #999;
+  line-height: 1.8;
+}
+
+/* ── 지도 ── */
+#map {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── 기관 목록 패널 ── */
+.list-panel {
+  width: 320px;
+  min-width: 260px;
+  background: white;
+  border-left: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.list-header {
+  padding: 12px 16px;
+  border-bottom: 2px solid #1565C0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.list-count {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1565C0;
+}
+
+.list-total {
+  font-size: 12px;
+  color: #999;
+}
+
+.facility-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px;
+}
+
+.list-loading {
+  padding: 24px;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+}
+
+/* ── 기관 카드 ── */
+.facility-card {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: white;
+}
+
+.facility-card:hover {
+  border-color: #1565C0;
+  background: #F8FBFF;
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(21,101,192,0.1);
+}
+
+.facility-card.active {
+  border-color: #1565C0;
+  background: #E3F2FD;
+}
+
+.facility-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.facility-region {
+  font-size: 11px;
+  color: #1565C0;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.facility-address {
+  font-size: 11px;
+  color: #888;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.no-location-badge {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  background: #FFF3E0;
+  color: #E65100;
+  font-size: 10px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.list-more-btn {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.list-more-btn:hover {
+  background: #eeeeee;
+}
+
+.list-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ── 팝업 커스텀 ── */
+.leaflet-popup-content {
+  font-family: 'Malgun Gothic', sans-serif;
+  font-size: 13px;
+  min-width: 200px;
+}
+
+.popup-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #1565C0;
+  margin-bottom: 6px;
+}
+
+.popup-region {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.popup-address {
+  font-size: 12px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 900px) {
+  .filter-panel {
+    width: 200px;
+  }
+  .list-panel {
+    width: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+  }
+  .filter-panel {
+    width: 100%;
+    min-width: unset;
+    max-height: 160px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .filter-section {
+    flex: 1;
+    min-width: 160px;
+  }
+  #map {
+    flex: none;
+    height: 45vh;
+  }
+  .list-panel {
+    width: 100%;
+    min-width: unset;
+    max-height: 35vh;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+  }
+}
