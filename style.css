@@ -175,14 +175,22 @@ body {
 }
 mark { background: #FFF176; color: inherit; border-radius: 2px; }
 
-/* 수정 버튼 */
-.edit-btn {
+/* 카드 액션 버튼 묶음 */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 1px;
+}
+.btn-edit, .btn-delete {
   background: none; border: 1px solid #e0e0e0; border-radius: 5px;
   padding: 4px 7px; font-size: 13px; cursor: pointer;
-  color: #888; flex-shrink: 0; transition: all 0.15s;
-  align-self: flex-start; margin-top: 1px;
+  transition: all 0.15s; line-height: 1;
 }
-.edit-btn:hover { background: #FFF8E1; border-color: #FFC107; color: #F57F17; }
+.btn-edit:hover   { background: #FFF8E1; border-color: #FFC107; }
+.btn-delete:hover { background: #FFEBEE; border-color: #E53935; }
 
 .list-more-btn {
   width: 100%; margin: 8px 0; padding: 10px;
