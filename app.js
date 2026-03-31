@@ -398,9 +398,11 @@ function escHtml(str) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// ── 앱 시작 ───────────────────────────────────────────────
-initMap();
-loadData().catch(err => {
-  document.getElementById('facility-list').innerHTML =
-    `<div class="list-empty">데이터 로드 실패.<br>로컬 서버에서 실행해 주세요.<br><small>${err.message}</small></div>`;
+// ── 앱 시작 (카카오 SDK 로드 완료 후 실행) ───────────────
+kakao.maps.load(function () {
+  initMap();
+  loadData().catch(err => {
+    document.getElementById('facility-list').innerHTML =
+      `<div class="list-empty">데이터 로드 실패.<br>로컬 서버에서 실행해 주세요.<br><small>${err.message}</small></div>`;
+  });
 });
