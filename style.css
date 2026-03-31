@@ -294,18 +294,18 @@ body {
   line-height: 1.8;
 }
 
-/* ── 팝업 커스텀 ── */
-.leaflet-popup-content {
+/* ── 카카오 인포윈도우 커스텀 ── */
+.wrap_map, .kakao_infowindow {
   font-family: 'Malgun Gothic', sans-serif;
-  font-size: 13px;
-  min-width: 200px;
 }
 
-.popup-name {
-  font-weight: 700;
-  font-size: 14px;
-  color: #1565C0;
-  margin-bottom: 6px;
+/* 카카오 기본 말풍선 스타일 보정 */
+.customoverlay {
+  bottom: 40px;
+  border-radius: 8px;
+  border: 1px solid #1565C0;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .popup-region {
