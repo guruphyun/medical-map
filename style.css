@@ -75,15 +75,82 @@ body {
 .stats-section { margin-top: auto; border-bottom: none; }
 .stats { font-size: 11px; color: #999; line-height: 1.8; }
 
-/* ── 지도 ── */
-#map {
+/* ── 그룹 관련 ── */
+.group-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 8px;
+  font-size: 11px;
+  align-items: center;
+  min-height: 18px;
+}
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.legend-dot  { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.legend-name { color: #555; }
+.legend-none { color: #bbb; font-size: 11px; }
+
+.manage-btn {
+  width: 100%; margin-top: 10px; padding: 7px;
+  background: #43A047; color: white; border: none; border-radius: 6px;
+  font-family: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.manage-btn:hover { background: #2E7D32; }
+
+.group-badge {
+  display: inline-block;
+  margin-left: 5px; padding: 1px 6px;
+  color: white; font-size: 10px; border-radius: 3px; font-weight: 700;
+  vertical-align: middle;
+}
+
+/* 그룹 관리 모달 내부 */
+.group-empty  { color: #aaa; font-size: 13px; text-align: center; padding: 16px; }
+.group-add-row { display: flex; gap: 6px; margin-top: 12px; align-items: center; }
+.group-add-row .modal-input { flex: 1; }
+#new-group-color {
+  width: 38px; height: 38px; border: 1px solid #ddd;
+  border-radius: 6px; cursor: pointer; padding: 2px; flex-shrink: 0;
+}
+
+/* ── 지도 래퍼 ── */
+.map-wrap {
   flex: 1;
   min-width: 0;
   min-height: 0;
   position: relative;
+}
+
+/* ── 지도 ── */
+#map {
+  width: 100%;
+  height: 100%;
   cursor: grab;
 }
 #map:active { cursor: grabbing; }
+
+/* ── 현 지도에서 검색 버튼 ── */
+.map-search-btn {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: white;
+  border: 1.5px solid #1565C0;
+  border-radius: 20px;
+  padding: 7px 20px;
+  font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1565C0;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.map-search-btn:hover { background: #1565C0; color: white; }
 
 /* ── 목록 패널 ── */
 .list-panel {
@@ -184,13 +251,79 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
   align-self: flex-start;
   margin-top: 1px;
 }
-.btn-edit, .btn-delete {
+.btn-edit, .btn-delete, .btn-group {
   background: none; border: 1px solid #e0e0e0; border-radius: 5px;
   padding: 4px 7px; font-size: 13px; cursor: pointer;
   transition: all 0.15s; line-height: 1;
 }
 .btn-edit:hover   { background: #FFF8E1; border-color: #FFC107; }
 .btn-delete:hover { background: #FFEBEE; border-color: #E53935; }
+.btn-group:hover  { background: #F3E5F5; border-color: #9C27B0; }
+
+/* ── 빠른 그룹 드롭다운 ── */
+.group-quick-dropdown {
+  position: fixed;
+  z-index: 9999;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  overflow: hidden;
+  min-width: 160px;
+}
+.group-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  transition: background 0.12s;
+}
+.group-dropdown-item:hover    { background: #F3F4F6; }
+.group-dropdown-item.selected { background: #E3F2FD; font-weight: 700; }
+.gd-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* ── 그룹 관리 모달 개선 ── */
+.group-row-wrap { border-bottom: 1px solid #f0f0f0; }
+.group-row { display: flex; align-items: center; gap: 8px; padding: 8px 4px; }
+.group-color-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(0,0,0,0.1); }
+.group-color-dot:hover { transform: scale(1.2); }
+.group-row-name  { flex: 1; font-size: 13px; color: #333; }
+.group-row-count { font-size: 12px; color: #999; white-space: nowrap; }
+.group-row-expand {
+  background: none; border: 1px solid #ddd; border-radius: 4px;
+  font-size: 11px; padding: 2px 7px; cursor: pointer; color: #555; white-space: nowrap;
+}
+.group-row-expand:hover { background: #f5f5f5; }
+.group-row-del {
+  background: none; border: none; color: #E53935;
+  cursor: pointer; font-size: 14px; padding: 2px 6px;
+  border-radius: 4px; transition: background 0.15s;
+}
+.group-row-del:hover { background: #FFEBEE; }
+
+.group-members {
+  background: #FAFAFA;
+  border-top: 1px solid #f0f0f0;
+  padding: 6px 8px;
+}
+.group-member-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 4px; border-bottom: 1px solid #f0f0f0; font-size: 12px;
+}
+.group-member-item:last-child { border-bottom: none; }
+.group-member-name   { flex: 1; color: #333; font-weight: 600; }
+.group-member-region { color: #999; font-size: 11px; white-space: nowrap; }
+.group-member-del {
+  background: none; border: none; color: #E53935;
+  cursor: pointer; font-size: 12px; padding: 1px 5px; border-radius: 3px;
+}
+.group-member-del:hover { background: #FFEBEE; }
+.group-member-empty { font-size: 12px; color: #bbb; padding: 6px 4px; }
 
 .list-more-btn {
   width: 100%; margin: 8px 0; padding: 10px;
@@ -199,7 +332,7 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
 }
 .list-more-btn:hover { background: #eee; }
 
-/* ── 모달 ── */
+/* ── 모달 (공통) ── */
 .modal-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.45);
@@ -233,6 +366,7 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
   transition: border-color 0.2s;
 }
 .modal-input:focus { border-color: #1565C0; box-shadow: 0 0 0 2px rgba(21,101,192,0.15); }
+.modal-select { padding: 9px 10px; cursor: pointer; }
 .addr-row { display: flex; gap: 6px; }
 .addr-row .modal-input { flex: 1; }
 .geocode-btn {
@@ -269,6 +403,6 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
   .main { flex-direction: column; }
   .filter-panel { width: 100%; min-width: unset; max-height: 150px; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid #e0e0e0; }
   .filter-section { flex: 1; min-width: 150px; }
-  #map { flex: none; height: 45vh; }
+  .map-wrap { flex: none; height: 45vh; }
   .list-panel { width: 100%; min-width: unset; max-height: 35vh; border-left: none; border-top: 1px solid #e0e0e0; }
 }
