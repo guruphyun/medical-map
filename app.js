@@ -4,6 +4,28 @@ const RENDER_CHUNK = 100;
 const LS_ADDED   = 'medicalmap_added';
 const LS_EDITED  = 'medicalmap_edited';
 
+// 카카오 geocoder 결과 지역명 정규화
+const REGION1_NORMALIZE = {
+  '서울': '서울특별시', '서울시': '서울특별시',
+  '부산': '부산광역시', '부산시': '부산광역시',
+  '대구': '대구광역시', '대구시': '대구광역시',
+  '인천': '인천광역시', '인천시': '인천광역시',
+  '광주': '광주광역시', '광주시': '광주광역시',
+  '대전': '대전광역시', '대전시': '대전광역시',
+  '울산': '울산광역시', '울산시': '울산광역시',
+  '세종': '세종특별자치시', '세종시': '세종특별자치시',
+  '경기': '경기도',
+  '강원': '강원특별자치도', '강원도': '강원특별자치도',
+  '충북': '충청북도', '충남': '충청남도',
+  '전남': '전라남도', '전북': '전북특별자치도',
+  '전라북도': '전북특별자치도',
+  '경북': '경상북도', '경남': '경상남도',
+  '제주': '제주특별자치도', '제주도': '제주특별자치도',
+};
+function normalizeRegion1(name) {
+  return REGION1_NORMALIZE[name] || name;
+}
+
 const state = {
   allFacilities: [],
   filteredFacilities: [],
@@ -447,14 +469,14 @@ document.getElementById('modal-geocode').addEventListener('click', () => {
       const r = result[0];
       state.pendingLat = parseFloat(r.y);
       state.pendingLng = parseFloat(r.x);
-      // 행정 지역명 자동 입력
+      // 지역명 자동 입력 + 정규화 적용
       const addrObj = r.address;
-      document.getElementById('modal-region1').value = addrObj.region_1depth_name || '';
-      document.getElementById('modal-region2').value = addrObj.region_2depth_name || '';
+      const r1 = normalizeRegion1(addrObj.region_1depth_name || '');
+      const r2 = addrObj.region_2depth_name || '';
+      document.getElementById('modal-region1').value = r1;
+      document.getElementById('modal-region2').value = r2;
       showGeocodeStatus(`✅ 위치 확인: ${r.address_name}`, 'ok');
     } else {
-      state.pendingLat = null;
-      state.pendingLng = null;
       showGeocodeStatus('❌ 주소를 찾을 수 없습니다. 정확한 도로명 주소를 입력하세요.', 'error');
     }
   });
@@ -513,58 +535,83 @@ document.getElementById('modal-save').addEventListener('click', () => {
 
   const autoReg = region1 ? { region1, region2 } : extractRegions(address);
 
+  const savedId = state.editingId; // closeModal 전에 저장
+
   if (state.editingId === null) {
     // ── 신규 추가
     const added = getAdded();
     const newId = 'new_' + Date.now();
     const newFac = {
-      id: newId,
-      name,
-      address,
-      region1: autoReg.region1,
-      region2: autoReg.region2,
-      lat: state.pendingLat,
-      lng: state.pendingLng,
+      id: newId, name, address,
+      region1: autoReg.region1, region2: autoReg.region2,
+      lat: state.pendingLat, lng: state.pendingLng,
       geocode_quality: state.pendingLat ? 'manual' : 'failed',
       isNew: true,
     };
     added.push(newFac);
     saveAdded(added);
   } else {
-    // ── 기존 수정
-    const edited = getEdited();
+    // ── 기존 수정: 좌표가 없으면 원본 데이터 좌표 유지
+    const edited  = getEdited();
+    const origFac = state.allFacilities.find(f => String(f.id) === String(state.editingId));
     edited[state.editingId] = {
-      name,
-      address,
-      region1: autoReg.region1,
-      region2: autoReg.region2,
-      lat: state.pendingLat,
-      lng: state.pendingLng,
+      name, address,
+      region1: autoReg.region1, region2: autoReg.region2,
+      lat: state.pendingLat  ?? origFac?.lat  ?? null,
+      lng: state.pendingLng  ?? origFac?.lng  ?? null,
     };
     saveEdited(edited);
   }
 
   closeModal();
-  reloadData();
+
+  // 수정/추가 후 필터 초기화하여 해당 기관이 반드시 보이도록
+  state.activeRegion1 = null;
+  state.activeRegion2 = null;
+  state.searchQuery   = name; // 저장한 기관명으로 검색
+  document.getElementById('region1-select').value = '';
+  document.getElementById('region2-select').value = '';
+  document.getElementById('search-input').value   = name;
+  document.getElementById('search-clear').classList.remove('hidden');
+  populateRegion2Select(null);
+
+  reloadData(savedId);
 });
 
 // 데이터 새로고침 (geocoding 없이 localStorage 재반영)
-async function reloadData() {
+async function reloadData(focusId = null) {
   const res  = await fetch('data/facilities.json');
   const base = await res.json();
   const edited  = getEdited();
   const added   = getAdded();
 
-  const merged   = base.map(f => { const e = edited[f.id]; return e ? { ...f, ...e } : f; });
+  const merged   = base.map(f => {
+    const e = edited[f.id] || edited[String(f.id)];
+    return e ? { ...f, ...e } : f;
+  });
   const newItems = added.map(f => ({ ...f, isNew: true }));
 
-  state.allFacilities  = [...merged, ...newItems];
-  state.regionIndex    = buildRegionIndex(state.allFacilities);
+  state.allFacilities = [...merged, ...newItems];
+  state.regionIndex   = buildRegionIndex(state.allFacilities);
 
   populateRegion1Select();
   if (state.activeRegion1) populateRegion2Select(state.activeRegion1);
   updateStats();
   applyFilter(false);
+
+  // 저장한 기관으로 포커스
+  if (focusId !== null) {
+    setTimeout(() => {
+      highlightCard(focusId);
+      const f = state.allFacilities.find(x => String(x.id) === String(focusId));
+      if (f?.lat && f?.lng) {
+        map.setCenter(new kakao.maps.LatLng(f.lat, f.lng));
+        map.setLevel(5);
+        const item = state.markerMap.get(f.id);
+        if (item) { item.iw.open(map, item.marker); item.marker.setImage(IMG_ACTIVE()); state.openOverlay = item.iw; }
+      }
+    }, 100);
+  }
 }
 
 // ── 유틸 ─────────────────────────────────────────────────

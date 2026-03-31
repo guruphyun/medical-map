@@ -225,7 +225,6 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
   transition: border-color 0.2s;
 }
 .modal-input:focus { border-color: #1565C0; box-shadow: 0 0 0 2px rgba(21,101,192,0.15); }
-.modal-input[readonly] { background: #f9f9f9; color: #777; }
 .addr-row { display: flex; gap: 6px; }
 .addr-row .modal-input { flex: 1; }
 .geocode-btn {
