@@ -99,7 +99,6 @@ function initMap() {
     }],
   });
   geocoder = new kakao.maps.services.Geocoder();
-  kakao.maps.event.addListener(map, 'click',        onMapClick);
   kakao.maps.event.addListener(map, 'dragend',      onMapMoved);
   kakao.maps.event.addListener(map, 'zoom_changed', onMapMoved);
 }
@@ -250,7 +249,6 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   document.getElementById('search-clear').classList.add('hidden');
   document.getElementById('map-search-btn').classList.add('hidden');
   renderGroupLegend();
-  document.getElementById('click-status').textContent = '';
   populateRegion2Select(null);
   applyFilter(false); // 지도 배율/위치 유지
 });
@@ -278,16 +276,23 @@ document.getElementById('map-search-btn').addEventListener('click', () => {
 // ── 필터 적용 ─────────────────────────────────────────────
 function applyFilter(moveMap = true) {
   closeOverlay();
+
+  // 검색어가 있으면 다른 필터와 무관하게 전체 기관에서 검색
+  if (state.searchQuery) {
+    const q = state.searchQuery.toLowerCase();
+    state.filteredFacilities = state.allFacilities.filter(f => f.name.toLowerCase().includes(q));
+    state.renderedCount = 0;
+    state.activeCardId  = null;
+    render();
+    return;
+  }
+
   let result = state.allFacilities;
   if (state.activeRegion1) result = result.filter(f => f.region1 === state.activeRegion1);
   if (state.activeRegion2) result = result.filter(f => f.region2 === state.activeRegion2);
   if (state.activeGroups.size > 0) {
     const members = getGMembers();
     result = result.filter(f => state.activeGroups.has(members[String(f.id)]));
-  }
-  if (state.searchQuery) {
-    const q = state.searchQuery.toLowerCase();
-    result = result.filter(f => f.name.toLowerCase().includes(q));
   }
   if (state.mapBoundsActive && map) {
     const bounds = map.getBounds();
@@ -307,35 +312,6 @@ function applyFilter(moveMap = true) {
   }
 }
 
-// ── 지도 클릭 ─────────────────────────────────────────────
-function onMapClick(e) {
-  const latlng = e.latLng;
-  const el = document.getElementById('click-status');
-  el.textContent = '지역 정보를 가져오는 중...';
-  geocoder.coord2RegionCode(latlng.getLng(), latlng.getLat(), (result, status) => {
-    if (status !== kakao.maps.services.Status.OK) { el.textContent = '지역 정보 없음'; return; }
-    const reg = result.find(r => r.region_type === 'H') || result[0];
-    const m1  = findMatchingRegion1(reg.region_1depth_name);
-    if (!m1) { el.textContent = '해당 지역 데이터 없음'; return; }
-    state.activeRegion1   = m1;
-    state.activeRegion2   = findMatchingRegion2(m1, reg.region_2depth_name);
-    state.mapBoundsActive = false;
-    document.getElementById('map-search-btn').classList.add('hidden');
-    document.getElementById('region1-select').value = m1;
-    populateRegion2Select(m1);
-    if (state.activeRegion2) document.getElementById('region2-select').value = state.activeRegion2;
-    el.textContent = `📍 ${m1}${state.activeRegion2 ? ' ' + state.activeRegion2 : ''}`;
-    applyFilter(false);
-  });
-}
-function findMatchingRegion1(n) {
-  const k = Object.keys(state.regionIndex);
-  return k.find(x => x === n) || k.find(x => x.startsWith(n.slice(0,2)) || n.startsWith(x.slice(0,2))) || null;
-}
-function findMatchingRegion2(r1, n) {
-  const l = state.regionIndex[r1] || [];
-  return l.find(x => x === n) || l.find(x => x.startsWith(n.slice(0,2)) || n.startsWith(x.slice(0,2))) || null;
-}
 
 // ── 렌더링 ───────────────────────────────────────────────
 function render() { renderMarkers(); renderListOnly(); renderListCount(); }
@@ -355,7 +331,7 @@ function renderMarkers() {
   toShow.forEach(f => {
     const gid    = members[String(f.id)];
     const gColor = gid ? gColorMap[gid] : null;
-    const imgNormal = f.isNew ? IMG_NEW() : (gColor ? IMG_GROUP(gColor) : IMG_NORMAL());
+    const imgNormal = gColor ? IMG_GROUP(gColor) : (f.isNew ? IMG_NEW() : IMG_NORMAL());
 
     const marker = new kakao.maps.Marker({
       position: new kakao.maps.LatLng(f.lat, f.lng),
@@ -575,8 +551,8 @@ function highlightCard(id) {
 
 function renderListCount() {
   let label = '전체 기관';
-  if (state.mapBoundsActive)    label = '현 지도 영역';
-  else if (state.searchQuery)   label = `"${state.searchQuery}" 검색 결과`;
+  if (state.searchQuery)        label = `"${state.searchQuery}" 검색 결과`;
+  else if (state.mapBoundsActive) label = '현 지도 영역';
   else if (state.activeGroups.size > 0) {
     const groups = getGroups();
     const names = [...state.activeGroups].map(gid => groups.find(g => g.id === gid)?.name).filter(Boolean);
@@ -651,8 +627,9 @@ function renderGroupManageList() {
       <div class="group-row">
         <span class="group-color-dot" style="background:${g.color}; cursor:pointer;" title="색상 변경" onclick="window.editGroupColor('${g.id}')"></span>
         <input class="group-color-input" type="color" value="${g.color}" data-gid="${g.id}" style="display:none;">
-        <span class="group-row-name">${escHtml(g.name)}</span>
+        <span class="group-row-name" id="gname-${g.id}">${escHtml(g.name)}</span>
         <span class="group-row-count">${cnt}개 기관</span>
+        <button class="group-row-rename" title="이름 수정" onclick="window.startRenameGroup('${g.id}')">✏️</button>
         <button class="group-row-expand" onclick="window.toggleGroupMembers('${g.id}')">▾ 멤버</button>
         <button class="group-row-del" onclick="window.deleteGroup('${g.id}')">✕</button>
       </div>
@@ -678,6 +655,46 @@ function renderGroupManageList() {
 window.editGroupColor = function(gid) {
   const input = document.querySelector(`.group-color-input[data-gid="${gid}"]`);
   if (input) input.click();
+};
+
+// ── 그룹명 수정 ──────────────────────────────────────────
+window.startRenameGroup = function(gid) {
+  const nameEl = document.getElementById(`gname-${gid}`);
+  if (!nameEl || nameEl.querySelector('input')) return;
+  const current = nameEl.textContent;
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = current;
+  input.className = 'group-name-edit-input';
+  input.onclick = e => e.stopPropagation();
+
+  const saveBtn = document.createElement('button');
+  saveBtn.textContent = '저장';
+  saveBtn.className = 'group-name-save-btn';
+
+  const doSave = () => {
+    const newName = input.value.trim();
+    if (!newName) { alert('그룹명을 입력해 주세요.'); return; }
+    const gs = getGroups();
+    const gi = gs.find(x => x.id === gid);
+    if (gi) { gi.name = newName; saveGroups(gs); }
+    renderGroupManageList();
+    renderGroupLegend();
+    populateGroupSelects();
+  };
+
+  saveBtn.onclick = doSave;
+  input.onkeydown = e => {
+    if (e.key === 'Enter') doSave();
+    if (e.key === 'Escape') renderGroupManageList();
+  };
+
+  nameEl.innerHTML = '';
+  nameEl.appendChild(input);
+  nameEl.appendChild(saveBtn);
+  input.focus();
+  input.select();
 };
 
 // ── 그룹 멤버 접기/펼치기 ────────────────────────────────
