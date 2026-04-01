@@ -200,14 +200,22 @@ body {
 
 /* ── 검색 바 ── */
 .search-bar {
-  padding: 10px 12px;
+  padding: 8px 12px 6px;
   border-bottom: 1px solid #eee;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 6px;
   background: #FAFAFA;
   flex-shrink: 0;
 }
+.search-type-toggle { display: flex; gap: 5px; }
+.search-type-btn {
+  flex: 1; padding: 4px 0; border: 1px solid #ddd; border-radius: 14px;
+  background: #fff; font-family: inherit; font-size: 11px; font-weight: 600;
+  color: #888; cursor: pointer; transition: all 0.18s;
+}
+.search-type-btn.active { background: #1565C0; border-color: #1565C0; color: #fff; }
+.search-type-btn:hover:not(.active) { border-color: #90CAF9; color: #1565C0; }
 .search-input {
   flex: 1; padding: 8px 12px;
   border: 1px solid #ddd; border-radius: 20px;
@@ -294,6 +302,42 @@ mark { background: #FFF176; color: inherit; border-radius: 2px; }
 .btn-edit:hover   { background: #FFF8E1; border-color: #FFC107; }
 .btn-delete:hover { background: #FFEBEE; border-color: #E53935; }
 .btn-group:hover  { background: #F3E5F5; border-color: #9C27B0; }
+.client-card { border-left: 3px solid #F9A825; }
+
+/* ── 근접 Top5 패널 ── */
+.nearby-panel {
+  border-top: 2px solid #1565C0; background: #F0F7FF; flex-shrink: 0;
+  max-height: 240px; overflow-y: auto;
+}
+.nearby-panel.hidden { display: none; }
+.nearby-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 12px; background: #1565C0;
+}
+.nearby-title { font-size: 11px; font-weight: 700; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+.nearby-close { background: none; border: none; color: rgba(255,255,255,0.8); font-size: 14px; cursor: pointer; padding: 0 0 0 8px; flex-shrink: 0; }
+.nearby-close:hover { color: #fff; }
+.nearby-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-bottom: 1px solid #dce8f5;
+}
+.nearby-rank {
+  width: 20px; height: 20px; border-radius: 50%; background: #1565C0; color: #fff;
+  font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.nearby-info { flex: 1; min-width: 0; }
+.nearby-name { font-size: 12px; font-weight: 600; color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nearby-addr { font-size: 10px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nearby-dist { font-size: 12px; font-weight: 700; color: #1565C0; flex-shrink: 0; white-space: nowrap; }
+.nearby-btns { display: flex; gap: 4px; flex-shrink: 0; }
+.nearby-btn-edit, .nearby-btn-del {
+  padding: 3px 7px; border-radius: 4px; font-size: 10px;
+  font-family: inherit; font-weight: 600; cursor: pointer; border: none;
+}
+.nearby-btn-edit { background: #e8f0fe; color: #1565C0; }
+.nearby-btn-edit:hover { background: #c5d9fb; }
+.nearby-btn-del  { background: #FFEBEE; color: #E53935; }
+.nearby-btn-del:hover { background: #FFCDD2; }
 
 /* ── 빠른 그룹 드롭다운 ── */
 .group-quick-dropdown {

@@ -69,8 +69,23 @@
     <aside class="list-panel">
       <!-- 검색 -->
       <div class="search-bar">
-        <input type="text" id="search-input" class="search-input" placeholder="🔍 기관명 검색...">
-        <button id="search-clear" class="search-clear hidden">✕</button>
+        <div class="search-type-toggle">
+          <button id="search-type-fac" class="search-type-btn active">검진기관</button>
+          <button id="search-type-cli" class="search-type-btn">고객사</button>
+        </div>
+        <div style="position:relative;">
+          <input type="text" id="search-input" class="search-input" placeholder="🔍 검진기관명 검색...">
+          <button id="search-clear" class="search-clear hidden">✕</button>
+        </div>
+      </div>
+
+      <!-- 근접 TOP5 패널 -->
+      <div id="nearby-panel" class="nearby-panel hidden">
+        <div class="nearby-header">
+          <span id="nearby-title" class="nearby-title"></span>
+          <button id="nearby-close" class="nearby-close">✕</button>
+        </div>
+        <div id="nearby-list" class="nearby-list"></div>
       </div>
 
       <!-- 목록 헤더 -->

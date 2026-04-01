@@ -179,6 +179,53 @@ function showClientIW(c, marker) {
   state.openIW = iw;
 }
 
+function showFacilityIW(f, marker) {
+  if (state.openIW) state.openIW.close();
+  const dist = f.distance != null ? `<div style="font-size:11px;color:#1565C0;font-weight:600;margin-bottom:8px;">${f.distance.toFixed(1)}km</div>` : '';
+  // 검진기관 수정은 nearby.js에서 LocalStorage 기반으로 처리
+  const sid = String(f.id).replace(/'/g, "\\'");
+  const iw = new kakao.maps.InfoWindow({
+    content: `<div style="padding:10px 12px;min-width:200px;font-family:'맑은 고딕',sans-serif;">
+      <div style="font-weight:700;font-size:13px;color:#1565C0;margin-bottom:3px;">🏥 ${escHtml(f.name)}</div>
+      <div style="font-size:11px;color:#666;margin-bottom:4px;">${escHtml(f.region1||'')} · ${escHtml(f.region2||'')}</div>
+      <div style="font-size:12px;color:#444;margin-bottom:6px;">${escHtml(f.address||'')}</div>
+      ${dist}
+      <div style="display:flex;gap:6px;border-top:1px solid #eee;padding-top:8px;">
+        <button onclick="editFacilityFromNearby('${sid}')"
+          style="flex:1;padding:5px;background:#1565C0;color:#fff;border:none;border-radius:4px;font-size:11px;cursor:pointer;">✏️ 수정</button>
+        <button onclick="deleteFacilityFromNearby('${sid}')"
+          style="flex:1;padding:5px;background:#fff;color:#E53935;border:1px solid #E53935;border-radius:4px;font-size:11px;cursor:pointer;">🗑️ 삭제</button>
+      </div>
+    </div>`,
+    removable: true,
+  });
+  iw.open(map, marker);
+  state.openIW = iw;
+}
+
+window.editFacilityFromNearby = function(id) {
+  const f = state.facilities.find(x => String(x.id) === String(id));
+  if (!f) return;
+  const name    = prompt('검진기관명', f.name    || ''); if (name    === null) return;
+  const address = prompt('주소',       f.address || ''); if (address === null) return;
+  if (!name.trim() || !address.trim()) { alert('이름과 주소를 입력해 주세요.'); return; }
+  const edited = JSON.parse(localStorage.getItem('medicalmap_edited') || '{}');
+  edited[id] = { ...f, name: name.trim(), address: address.trim() };
+  localStorage.setItem('medicalmap_edited', JSON.stringify(edited));
+  if (state.openIW) { state.openIW.close(); state.openIW = null; }
+  reloadAndRefresh();
+};
+
+window.deleteFacilityFromNearby = function(id) {
+  const f = state.facilities.find(x => String(x.id) === String(id));
+  if (!f || !confirm(`"${f.name}"을(를) 삭제하시겠습니까?`)) return;
+  const deleted = JSON.parse(localStorage.getItem('medicalmap_deleted') || '[]');
+  if (!deleted.includes(String(id))) deleted.push(String(id));
+  localStorage.setItem('medicalmap_deleted', JSON.stringify(deleted));
+  if (state.openIW) { state.openIW.close(); state.openIW = null; }
+  reloadAndRefresh();
+};
+
 // ── 기준 선택 & 반경 검색 ────────────────────────────────
 function selectBase(item, type) {
   if (state.openIW) { state.openIW.close(); state.openIW = null; }
@@ -236,20 +283,7 @@ function doSearch() {
         position: new kakao.maps.LatLng(f.lat, f.lng),
         map, image: makeFacilityDot(false), title: f.name,
       });
-      kakao.maps.event.addListener(m, 'click', () => {
-        if (state.openIW) state.openIW.close();
-        const iw = new kakao.maps.InfoWindow({
-          content: `<div style="padding:8px 10px;min-width:180px;font-family:'맑은 고딕',sans-serif;">
-            <div style="font-weight:700;font-size:13px;color:#1565C0;">🏥 ${escHtml(f.name)}</div>
-            <div style="font-size:11px;color:#666;margin-top:3px;">${escHtml(f.region1)} · ${escHtml(f.region2)}</div>
-            <div style="font-size:12px;color:#444;margin-top:4px;">${escHtml(f.address)}</div>
-            <div style="font-size:11px;color:#1565C0;margin-top:4px;font-weight:600;">${f.distance.toFixed(1)}km</div>
-          </div>`,
-          removable: true,
-        });
-        iw.open(map, m);
-        state.openIW = iw;
-      });
+      kakao.maps.event.addListener(m, 'click', () => showFacilityIW(f, m));
       state.resultMarkers.push(m);
     });
   } else {

@@ -59,7 +59,7 @@ const state = {
   allFacilities: [], filteredFacilities: [],
   allClients: [],
   activeRegion1: null, activeRegion2: null,
-  activeGroups: new Set(), searchQuery: '', mapBoundsActive: false,
+  activeGroups: new Set(), searchQuery: '', searchType: 'facility', mapBoundsActive: false,
   regionIndex: {}, renderedCount: 0, activeCardId: null,
   markerMap: new Map(), clientMarkerMap: new Map(), openOverlay: null,
   editingId: null, pendingLat: null, pendingLng: null,
@@ -284,6 +284,28 @@ document.getElementById('reset-btn').addEventListener('click', () => {
   applyFilter(false); // 지도 배율/위치 유지
 });
 
+// ── 검색 타입 토글 ───────────────────────────────────────
+document.getElementById('search-type-fac').addEventListener('click', function() {
+  state.searchType = 'facility';
+  this.classList.add('active');
+  document.getElementById('search-type-cli').classList.remove('active');
+  document.getElementById('search-input').placeholder = '🔍 검진기관명 검색...';
+  state.searchQuery = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').classList.add('hidden');
+  applyFilter();
+});
+document.getElementById('search-type-cli').addEventListener('click', function() {
+  state.searchType = 'client';
+  this.classList.add('active');
+  document.getElementById('search-type-fac').classList.remove('active');
+  document.getElementById('search-input').placeholder = '🔍 고객사명 검색...';
+  state.searchQuery = '';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').classList.add('hidden');
+  applyFilter();
+});
+
 // ── 검색 이벤트 ───────────────────────────────────────────
 document.getElementById('search-input').addEventListener('input', function () {
   state.searchQuery = this.value.trim();
@@ -308,12 +330,26 @@ document.getElementById('map-search-btn').addEventListener('click', () => {
 function applyFilter(moveMap = true) {
   closeOverlay();
 
-  // 검색어가 있으면 다른 필터와 무관하게 전체 기관에서 검색
+  // 검색어가 있으면 다른 필터와 무관하게 전체에서 검색
   if (state.searchQuery) {
     const q = state.searchQuery.toLowerCase();
+    if (state.searchType === 'client') {
+      // 고객사 검색 → 카드 목록을 고객사 결과로 표시
+      const matched = state.allClients.filter(c => c.name.toLowerCase().includes(q));
+      renderClientSearchResults(matched, q);
+      return;
+    }
     state.filteredFacilities = state.allFacilities.filter(f => f.name.toLowerCase().includes(q));
     state.renderedCount = 0;
     state.activeCardId  = null;
+    render();
+    return;
+  }
+
+  // 고객사 검색 모드 해제 시 기관 목록 복원
+  if (state.searchType === 'client') {
+    state.filteredFacilities = state.allFacilities;
+    state.renderedCount = 0; state.activeCardId = null;
     render();
     return;
   }
@@ -366,6 +402,7 @@ function renderClientMarkers() {
     });
     kakao.maps.event.addListener(marker, 'click', () => {
       closeOverlay(); iw.open(map, marker); state.openOverlay = iw;
+      showNearbyPanel(c, 'client');
     });
     state.clientMarkerMap.set(String(c.id), { marker });
   });
@@ -403,6 +440,7 @@ function renderMarkers() {
       state.openOverlay  = iw;
       ensureCardRendered(f.id);
       highlightCard(f.id);
+      showNearbyPanel(f, 'facility');
     });
 
     markers.push(marker);
@@ -585,6 +623,156 @@ function highlightText(text, q) {
   const esc  = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return safe.replace(new RegExp(esc, 'gi'), m => `<mark>${m}</mark>`);
 }
+
+// ── Haversine 거리 계산 ───────────────────────────────────
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const toR = x => x * Math.PI / 180;
+  const dLat = toR(lat2 - lat1), dLng = toR(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toR(lat1)) * Math.cos(toR(lat2)) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+// ── 고객사 검색 결과 카드 렌더링 ─────────────────────────
+function renderClientSearchResults(clients, q) {
+  const list = document.getElementById('facility-list');
+  list.innerHTML = '';
+  state.renderedCount = 0;
+  document.getElementById('list-count').textContent = `고객사 검색 결과`;
+  document.getElementById('list-total').textContent = `${clients.length}개`;
+
+  if (!clients.length) {
+    list.innerHTML = '<div class="list-empty">검색 결과가 없습니다.</div>';
+    return;
+  }
+  clients.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'facility-card client-card';
+    const name = q ? highlightText(c.name, q) : escHtml(c.name);
+    const noLoc = !c.lat || !c.lng;
+    card.innerHTML = `
+      <div class="card-main">
+        <div class="facility-name">🏢 ${name}</div>
+        <div class="facility-region">${escHtml(c.region1||'')} · ${escHtml(c.region2||'')}</div>
+        <div class="facility-address">${escHtml(c.address||'')}</div>
+        ${noLoc ? '<span class="no-location-badge">위치 미등록</span>' : ''}
+      </div>
+      <div class="card-actions">
+        <button class="btn-edit"   title="수정">✏️</button>
+        <button class="btn-delete" title="삭제">🗑️</button>
+      </div>`;
+
+    card.querySelector('.card-main').addEventListener('click', () => {
+      if (c.lat && c.lng) {
+        closeOverlay();
+        map.setCenter(new kakao.maps.LatLng(c.lat, c.lng));
+        map.setLevel(5);
+        // 고객사 클릭 → 근접 검진기관 Top5 표시
+        showNearbyPanel(c, 'client');
+      }
+    });
+    card.querySelector('.btn-edit').addEventListener('click', e => {
+      e.stopPropagation();
+      openClientEditModal(c);
+    });
+    card.querySelector('.btn-delete').addEventListener('click', e => {
+      e.stopPropagation();
+      deleteClientItem(c);
+    });
+    list.appendChild(card);
+  });
+}
+
+// ── 고객사 수정/삭제 (index.html 내) ────────────────────
+function openClientEditModal(c) {
+  // nearby.js의 openClientModal 과 같은 LS 키 공유
+  const id = String(c.id);
+  const edited = lsGet('medicalmap_cli_edited') || {};
+  const data = edited[id] || c;
+  const name    = prompt('고객사명', data.name || ''); if (name === null) return;
+  const address = prompt('주소',     data.address || ''); if (address === null) return;
+  if (!name.trim() || !address.trim()) { alert('이름과 주소를 입력해 주세요.'); return; }
+  edited[id] = { ...data, name: name.trim(), address: address.trim() };
+  lsSet('medicalmap_cli_edited', edited);
+  reloadClients();
+}
+
+function deleteClientItem(c) {
+  if (!confirm(`"${c.name}" 고객사를 삭제하시겠습니까?`)) return;
+  const deleted = lsGet('medicalmap_cli_deleted') || [];
+  if (!deleted.includes(String(c.id))) deleted.push(String(c.id));
+  lsSet('medicalmap_cli_deleted', deleted);
+  reloadClients();
+}
+
+async function reloadClients() {
+  const cr = await fetch('data/clients.json').then(r => r.json()).catch(() => []);
+  loadClients(cr);
+  renderClientMarkers();
+  // 검색 중이면 재검색
+  if (state.searchQuery && state.searchType === 'client') {
+    const q = state.searchQuery.toLowerCase();
+    renderClientSearchResults(state.allClients.filter(c => c.name.toLowerCase().includes(q)), q);
+  }
+}
+
+// ── 근접 Top5 패널 ────────────────────────────────────────
+function showNearbyPanel(item, type) {
+  const panel = document.getElementById('nearby-panel');
+  const title = document.getElementById('nearby-title');
+  const listEl = document.getElementById('nearby-list');
+
+  if (!item.lat || !item.lng) { panel.classList.add('hidden'); return; }
+
+  let top5 = [];
+  if (type === 'client') {
+    // 고객사 → 가까운 검진기관 Top5
+    title.textContent = `🏢 ${item.name} | 가까운 검진기관 Top 5`;
+    top5 = state.allFacilities
+      .filter(f => f.lat && f.lng)
+      .map(f => ({ ...f, _dist: haversine(item.lat, item.lng, f.lat, f.lng) }))
+      .sort((a, b) => a._dist - b._dist)
+      .slice(0, 5);
+    listEl.innerHTML = top5.map((f, i) => {
+      const sid = String(f.id).replace(/'/g, "\\'");
+      return `<div class="nearby-item">
+        <span class="nearby-rank">${i+1}</span>
+        <div class="nearby-info">
+          <div class="nearby-name">🏥 ${escHtml(f.name)}</div>
+          <div class="nearby-addr">${escHtml(f.region1||'')} · ${escHtml(f.address||'')}</div>
+        </div>
+        <span class="nearby-dist">${f._dist.toFixed(1)}km</span>
+        <div class="nearby-btns">
+          <button onclick="openModal('${sid}')" class="nearby-btn-edit">수정</button>
+          <button onclick="window.kmapDelete('${sid}')" class="nearby-btn-del">삭제</button>
+        </div>
+      </div>`;
+    }).join('');
+  } else {
+    // 검진기관 → 가까운 고객사 Top5
+    title.textContent = `🏥 ${item.name} | 가까운 고객사 Top 5`;
+    top5 = state.allClients
+      .filter(c => c.lat && c.lng)
+      .map(c => ({ ...c, _dist: haversine(item.lat, item.lng, c.lat, c.lng) }))
+      .sort((a, b) => a._dist - b._dist)
+      .slice(0, 5);
+    listEl.innerHTML = top5.map((c, i) => `
+      <div class="nearby-item">
+        <span class="nearby-rank">${i+1}</span>
+        <div class="nearby-info">
+          <div class="nearby-name">🏢 ${escHtml(c.name)}</div>
+          <div class="nearby-addr">${escHtml(c.region1||'')} · ${escHtml(c.address||'')}</div>
+        </div>
+        <span class="nearby-dist">${c._dist.toFixed(1)}km</span>
+      </div>`).join('');
+  }
+
+  panel.classList.remove('hidden');
+}
+
+document.getElementById('nearby-close').addEventListener('click', () => {
+  document.getElementById('nearby-panel').classList.add('hidden');
+});
 
 function appendMoreBtn() {
   const list = document.getElementById('facility-list');

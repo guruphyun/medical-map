@@ -51,6 +51,8 @@ body { font-family: '맑은 고딕', 'Malgun Gothic', sans-serif; background: #f
 .col-act    { width: 110px; white-space: nowrap; }
 
 .badge-new { background: #43A047; color: #fff; font-size: 10px; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
+.sort-arrow { font-size: 10px; color: rgba(255,255,255,0.5); margin-left: 3px; }
+.sort-arrow.active { color: #fff; font-weight: 700; }
 .loading-cell, .empty-cell { text-align: center; padding: 40px; color: #bbb; font-size: 14px; }
 
 .btn-edit, .btn-del { padding: 4px 10px; border-radius: 5px; font-size: 11px; font-family: inherit; font-weight: 600; cursor: pointer; border: none; }

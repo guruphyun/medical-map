@@ -22,6 +22,7 @@ const app = {
   page: 1,
   search: '',
   region1: '', region2: '',
+  sortKey: 'name', sortDir: 'asc',
   editingId: null,
   pendingLat: null, pendingLng: null,
   regionIndex: {},
@@ -104,12 +105,21 @@ function buildRegionIndex() {
 }
 
 // ── 탭 전환 ──────────────────────────────────────────────
+window.sortBy = function(key) {
+  if (app.sortKey === key) app.sortDir = app.sortDir === 'asc' ? 'desc' : 'asc';
+  else { app.sortKey = key; app.sortDir = 'asc'; }
+  app.page = 1;
+  renderTable();
+};
+
 window.switchTab = function(tab) {
   app.tab = tab;
   app.page = 1;
   app.search = '';
   app.region1 = '';
   app.region2 = '';
+  app.sortKey = 'name';
+  app.sortDir = 'asc';
   document.getElementById('list-search').value = '';
   document.getElementById('list-region1').value = '';
   document.getElementById('list-region2').value = '';
@@ -152,14 +162,41 @@ function populateRegion2(r1) {
 }
 
 // ── 테이블 렌더링 ─────────────────────────────────────────
+// 가나다 우선 (한글 > 영문/숫자 > 특수문자)
+function koSort(a, b) {
+  const ka = String(a || ''), kb = String(b || '');
+  // 첫 문자 분류: 한글=0, 영문=1, 숫자=2, 기타=3
+  const rank = s => {
+    const c = s.charCodeAt(0);
+    if (c >= 0xAC00 && c <= 0xD7A3) return 0; // 한글
+    if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122)) return 1; // 영문
+    if (c >= 48 && c <= 57) return 2; // 숫자
+    return 3;
+  };
+  const ra = rank(ka), rb = rank(kb);
+  if (ra !== rb) return ra - rb;
+  return ka.localeCompare(kb, 'ko');
+}
+
+function getSortedData(data) {
+  return [...data].sort((a, b) => {
+    let va = a[app.sortKey] ?? '', vb = b[app.sortKey] ?? '';
+    let cmp;
+    if (app.sortKey === 'name') cmp = koSort(va, vb);
+    else cmp = String(va).localeCompare(String(vb), 'ko');
+    return app.sortDir === 'asc' ? cmp : -cmp;
+  });
+}
+
 function getFilteredData() {
   const list = app.tab === 'facility' ? app.facilities : app.clients;
   const q = app.search.toLowerCase();
-  return list.filter(item =>
+  const filtered = list.filter(item =>
     (!q || item.name.toLowerCase().includes(q)) &&
     (!app.region1 || item.region1 === app.region1) &&
     (!app.region2 || item.region2 === app.region2)
   );
+  return getSortedData(filtered);
 }
 
 function renderTable() {
@@ -170,13 +207,19 @@ function renderTable() {
 
   const isFac = app.tab === 'facility';
   const head = document.getElementById('table-head');
+  const sortArrow = key => {
+    if (app.sortKey !== key) return '<span class="sort-arrow">↕</span>';
+    return `<span class="sort-arrow active">${app.sortDir === 'asc' ? '↑' : '↓'}</span>`;
+  };
+  const th = (key, label, cls) =>
+    `<th class="${cls}" onclick="sortBy('${key}')" style="cursor:pointer;">${label}${sortArrow(key)}</th>`;
   head.innerHTML = `<tr>
     <th class="col-no">No</th>
-    <th class="col-name">이름</th>
-    <th class="col-r1">시/도</th>
-    <th class="col-r2">구/군</th>
-    <th class="col-addr">주소</th>
-    ${isFac ? '' : '<th class="col-detail">상세주소</th>'}
+    ${th('name',    '이름',   'col-name')}
+    ${th('region1', '시/도',  'col-r1')}
+    ${th('region2', '구/군',  'col-r2')}
+    ${th('address', '주소',   'col-addr')}
+    ${isFac ? '' : th('detail','상세주소','col-detail')}
     <th class="col-loc">위치</th>
     <th class="col-act">관리</th>
   </tr>`;
