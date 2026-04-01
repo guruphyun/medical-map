@@ -1,8 +1,8 @@
 'use strict';
 
-const LS_C_ADDED   = 'medmap_clients_added';
-const LS_C_EDITED  = 'medmap_clients_edited';
-const LS_C_DELETED = 'medmap_clients_deleted';
+const LS_C_ADDED   = 'medicalmap_cli_added';
+const LS_C_EDITED  = 'medicalmap_cli_edited';
+const LS_C_DELETED = 'medicalmap_cli_deleted';
 
 const state = {
   mode: 'client',
