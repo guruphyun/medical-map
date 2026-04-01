@@ -85,10 +85,28 @@ body {
   align-items: center;
   min-height: 18px;
 }
-.legend-item { display: flex; align-items: center; gap: 4px; }
+.legend-item {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 8px; border-radius: 14px;
+  border: 1.5px solid transparent;
+  cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  user-select: none;
+}
+.legend-item:hover { background: #f0f4ff; }
+.legend-item.active { font-weight: 600; }
+.legend-item.active .legend-name { color: #222; }
 .legend-dot  { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-.legend-name { color: #555; }
+.legend-name { color: #555; font-size: 12px; }
 .legend-none { color: #bbb; font-size: 11px; }
+
+.group-filter-clear {
+  width: 100%; margin-top: 6px; padding: 5px;
+  background: #fff; color: #E53935; border: 1px solid #E53935;
+  border-radius: 6px; font-family: inherit; font-size: 11px;
+  cursor: pointer; transition: background 0.2s;
+}
+.group-filter-clear:hover { background: #ffeaea; }
+.group-filter-clear.hidden { display: none; }
 
 .manage-btn {
   width: 100%; margin-top: 10px; padding: 7px;

@@ -58,7 +58,7 @@ function darkenHex(hex) {
 const state = {
   allFacilities: [], filteredFacilities: [],
   activeRegion1: null, activeRegion2: null,
-  activeGroup: null, searchQuery: '', mapBoundsActive: false,
+  activeGroups: new Set(), searchQuery: '', mapBoundsActive: false,
   regionIndex: {}, renderedCount: 0, activeCardId: null,
   markerMap: new Map(), openOverlay: null,
   editingId: null, pendingLat: null, pendingLng: null,
@@ -176,16 +176,6 @@ function populateRegion2Select(r1) {
 // ── 그룹 드롭다운 & 범례 ──────────────────────────────────
 function populateGroupSelects() {
   const groups = getGroups();
-
-  const fsel = document.getElementById('group-select');
-  const fcur = fsel.value;
-  fsel.innerHTML = '<option value="">전체 그룹</option>';
-  groups.forEach(g => {
-    const o = document.createElement('option');
-    o.value = g.id; o.textContent = g.name; fsel.appendChild(o);
-  });
-  fsel.value = fcur;
-
   const msel = document.getElementById('modal-group');
   const mcur = msel.value;
   msel.innerHTML = '<option value="">그룹 없음</option>';
@@ -199,11 +189,30 @@ function populateGroupSelects() {
 function renderGroupLegend() {
   const groups = getGroups();
   const el = document.getElementById('group-legend');
-  if (!groups.length) { el.innerHTML = '<span class="legend-none">그룹 없음</span>'; return; }
-  el.innerHTML = groups.map(g =>
-    `<span class="legend-item"><span class="legend-dot" style="background:${g.color};"></span><span class="legend-name">${escHtml(g.name)}</span></span>`
-  ).join('');
+  const clearBtn = document.getElementById('group-filter-clear');
+  if (!groups.length) {
+    el.innerHTML = '<span class="legend-none">그룹 없음</span>';
+    clearBtn.classList.add('hidden');
+    return;
+  }
+  el.innerHTML = groups.map(g => {
+    const active = state.activeGroups.has(g.id);
+    return `<span class="legend-item${active ? ' active' : ''}" data-gid="${g.id}"
+      style="${active ? `background:${g.color}22;border-color:${g.color};` : ''}"
+      onclick="window.toggleGroupFilter('${g.id}')">
+      <span class="legend-dot" style="background:${g.color};"></span>
+      <span class="legend-name">${escHtml(g.name)}</span>
+    </span>`;
+  }).join('');
+  clearBtn.classList.toggle('hidden', state.activeGroups.size === 0);
 }
+
+window.toggleGroupFilter = function(gid) {
+  if (state.activeGroups.has(gid)) state.activeGroups.delete(gid);
+  else state.activeGroups.add(gid);
+  renderGroupLegend();
+  applyFilter();
+};
 
 // ── 전체 마커 맞춤 ────────────────────────────────────────
 function fitAllMarkers() {
@@ -226,20 +235,21 @@ document.getElementById('region2-select').addEventListener('change', function ()
   state.activeRegion2 = this.value || null;
   applyFilter();
 });
-document.getElementById('group-select').addEventListener('change', function () {
-  state.activeGroup = this.value || null;
+document.getElementById('group-filter-clear').addEventListener('click', () => {
+  state.activeGroups = new Set();
+  renderGroupLegend();
   applyFilter();
 });
 document.getElementById('reset-btn').addEventListener('click', () => {
   state.activeRegion1 = null; state.activeRegion2 = null;
-  state.searchQuery   = '';   state.activeGroup   = null;
+  state.searchQuery   = '';   state.activeGroups  = new Set();
   state.mapBoundsActive = false;
   document.getElementById('region1-select').value = '';
   document.getElementById('region2-select').value = '';
   document.getElementById('search-input').value   = '';
   document.getElementById('search-clear').classList.add('hidden');
-  document.getElementById('group-select').value   = '';
   document.getElementById('map-search-btn').classList.add('hidden');
+  renderGroupLegend();
   document.getElementById('click-status').textContent = '';
   populateRegion2Select(null);
   applyFilter(false); // 지도 배율/위치 유지
@@ -271,9 +281,9 @@ function applyFilter(moveMap = true) {
   let result = state.allFacilities;
   if (state.activeRegion1) result = result.filter(f => f.region1 === state.activeRegion1);
   if (state.activeRegion2) result = result.filter(f => f.region2 === state.activeRegion2);
-  if (state.activeGroup) {
+  if (state.activeGroups.size > 0) {
     const members = getGMembers();
-    result = result.filter(f => members[String(f.id)] === state.activeGroup);
+    result = result.filter(f => state.activeGroups.has(members[String(f.id)]));
   }
   if (state.searchQuery) {
     const q = state.searchQuery.toLowerCase();
@@ -430,10 +440,7 @@ window.deleteGroup = function(gid) {
   const members = getGMembers();
   for (const k in members) { if (members[k] === gid) delete members[k]; }
   saveGMembers(members);
-  if (state.activeGroup === gid) {
-    state.activeGroup = null;
-    document.getElementById('group-select').value = '';
-  }
+  state.activeGroups.delete(gid);
   renderGroupManageList();
 };
 
@@ -570,9 +577,10 @@ function renderListCount() {
   let label = '전체 기관';
   if (state.mapBoundsActive)    label = '현 지도 영역';
   else if (state.searchQuery)   label = `"${state.searchQuery}" 검색 결과`;
-  else if (state.activeGroup) {
-    const g = getGroups().find(x => x.id === state.activeGroup);
-    label = g ? `그룹: ${g.name}` : '그룹 필터';
+  else if (state.activeGroups.size > 0) {
+    const groups = getGroups();
+    const names = [...state.activeGroups].map(gid => groups.find(g => g.id === gid)?.name).filter(Boolean);
+    label = `그룹: ${names.join(', ')}`;
   }
   else if (state.activeRegion1) label = state.activeRegion1 + (state.activeRegion2 ? ' ' + state.activeRegion2 : '');
   document.getElementById('list-count').textContent = label;
