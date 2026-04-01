@@ -349,6 +349,10 @@ function updateBaseDisplay() {
     </div>`;
 }
 
+// ── 모드 버튼 이벤트 ─────────────────────────────────────
+document.getElementById('btn-mode-client').addEventListener('click', () => setMode('client'));
+document.getElementById('btn-mode-facility').addEventListener('click', () => setMode('facility'));
+
 // ── 모드 전환 ─────────────────────────────────────────────
 function setMode(mode) {
   state.mode = mode;
