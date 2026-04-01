@@ -57,11 +57,13 @@ function darkenHex(hex) {
 // ── 상태 ─────────────────────────────────────────────────
 const state = {
   allFacilities: [], filteredFacilities: [],
+  allClients: [],
   activeRegion1: null, activeRegion2: null,
   activeGroups: new Set(), searchQuery: '', mapBoundsActive: false,
   regionIndex: {}, renderedCount: 0, activeCardId: null,
-  markerMap: new Map(), openOverlay: null,
+  markerMap: new Map(), clientMarkerMap: new Map(), openOverlay: null,
   editingId: null, pendingLat: null, pendingLng: null,
+  layerFacility: true, layerClient: true,
 };
 
 let map, clusterer, geocoder;
@@ -80,6 +82,19 @@ const IMG_NORMAL  = () => makeDotImg('#2196F3', '#1565C0');
 const IMG_ACTIVE  = () => makeDotImg('#FF5722', '#BF360C');
 const IMG_NEW     = () => makeDotImg('#43A047', '#1B5E20');
 const IMG_GROUP   = c  => makeDotImg(c, darkenHex(c));
+
+function makeClientPinImg() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" viewBox="0 0 20 26">
+    <path d="M10 0C4.5 0 0 4.5 0 10c0 7.5 10 16 10 16s10-8.5 10-16C20 4.5 15.5 0 10 0z"
+      fill="#FFF176" stroke="#F9A825" stroke-width="1.5"/>
+    <circle cx="10" cy="10" r="4" fill="#F9A825" fill-opacity="0.8"/>
+  </svg>`;
+  return new kakao.maps.MarkerImage(
+    'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg),
+    new kakao.maps.Size(20, 26),
+    { offset: new kakao.maps.Point(10, 26) }
+  );
+}
 
 // ── 지도 초기화 ──────────────────────────────────────────
 function initMap() {
@@ -109,15 +124,31 @@ function onMapMoved() {
 
 // ── 데이터 로드 ──────────────────────────────────────────
 async function loadData() {
-  const res  = await fetch('data/facilities.json');
-  const base = await res.json();
+  const [facRes, cliRes] = await Promise.all([
+    fetch('data/facilities.json'),
+    fetch('data/clients.json'),
+  ]);
+  const base = await facRes.json();
+  const clients = await cliRes.json().catch(() => []);
   mergeAndSet(base);
+  loadClients(clients);
   populateRegion1Select();
   populateGroupSelects();
   renderGroupLegend();
   updateStats();
   render();
   fitAllMarkers();
+}
+
+function loadClients(base) {
+  const edited  = lsGet('medicalmap_cli_edited')  || {};
+  const added   = lsGet('medicalmap_cli_added')   || [];
+  const deleted = lsGet('medicalmap_cli_deleted') || [];
+  const merged = base
+    .filter(c => !deleted.includes(String(c.id)))
+    .map(c => { const e = edited[c.id] || edited[String(c.id)]; return e ? { ...c, ...e } : c; });
+  const newItems = added.filter(c => !deleted.includes(String(c.id)));
+  state.allClients = [...merged, ...newItems];
 }
 
 function mergeAndSet(base) {
@@ -314,12 +345,38 @@ function applyFilter(moveMap = true) {
 
 
 // ── 렌더링 ───────────────────────────────────────────────
-function render() { renderMarkers(); renderListOnly(); renderListCount(); }
+function render() { renderMarkers(); renderClientMarkers(); renderListOnly(); renderListCount(); }
+
+function renderClientMarkers() {
+  state.clientMarkerMap.forEach(({ marker }) => marker.setMap(null));
+  state.clientMarkerMap.clear();
+  if (!state.layerClient) return;
+  state.allClients.filter(c => c.lat && c.lng).forEach(c => {
+    const marker = new kakao.maps.Marker({
+      position: new kakao.maps.LatLng(c.lat, c.lng),
+      image: makeClientPinImg(), map, title: c.name,
+    });
+    const iw = new kakao.maps.InfoWindow({
+      content: `<div style="padding:10px 12px;min-width:190px;font-family:'맑은 고딕',sans-serif;">
+        <div style="font-weight:700;font-size:13px;color:#F57F17;margin-bottom:3px;">🏢 ${escHtml(c.name)}</div>
+        <div style="font-size:11px;color:#666;margin-bottom:4px;">${escHtml(c.region1||'')} · ${escHtml(c.region2||'')}</div>
+        <div style="font-size:11px;color:#888;">${escHtml(c.address||'')}</div>
+      </div>`,
+      removable: true,
+    });
+    kakao.maps.event.addListener(marker, 'click', () => {
+      closeOverlay(); iw.open(map, marker); state.openOverlay = iw;
+    });
+    state.clientMarkerMap.set(String(c.id), { marker });
+  });
+}
 
 function renderMarkers() {
   closeOverlay();
   clusterer.clear();
   state.markerMap.clear();
+
+  if (!state.layerFacility) return;
 
   const toShow   = state.filteredFacilities.filter(f => f.lat && f.lng);
   const members  = getGMembers();
@@ -927,6 +984,16 @@ async function reloadData(focusId = null) {
 function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+// ── 레이어 토글 ───────────────────────────────────────────
+document.getElementById('layer-facility').addEventListener('change', function() {
+  state.layerFacility = this.checked;
+  renderMarkers(); // clusterer 재처리 포함
+});
+document.getElementById('layer-client').addEventListener('change', function() {
+  state.layerClient = this.checked;
+  renderClientMarkers();
+});
 
 // ── 앱 시작 ───────────────────────────────────────────────
 window.addEventListener('load', function () {

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>목록 관리 - 건강검진기관 지도</title>
+  <link rel="stylesheet" href="list.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="header-title">📋 목록 관리</h1>
+      <div class="header-nav">
+        <a href="index.html"  class="header-nav-btn">🗺️ 검진기관 지도</a>
+        <a href="nearby.html" class="header-nav-btn">🏢 반경 검색</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- 탭 -->
+    <div class="tab-bar">
+      <button class="tab-btn active" id="tab-facility" onclick="switchTab('facility')">🏥 검진기관 <span id="fac-count" class="tab-count"></span></button>
+      <button class="tab-btn"        id="tab-client"   onclick="switchTab('client')">🏢 고객사 <span id="cli-count" class="tab-count"></span></button>
+    </div>
+
+    <!-- 툴바 -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input type="text" id="list-search" class="list-search" placeholder="🔍 이름 검색...">
+        <button id="list-search-clear" class="search-clear hidden">✕</button>
+      </div>
+      <select id="list-region1" class="toolbar-select">
+        <option value="">전체 시/도</option>
+      </select>
+      <select id="list-region2" class="toolbar-select" disabled>
+        <option value="">전체 구/군</option>
+      </select>
+      <button id="add-btn" class="btn-primary" onclick="openModal(null)">＋ 추가</button>
+      <span id="list-info" class="list-info"></span>
+    </div>
+
+    <!-- 테이블 -->
+    <div class="table-wrap">
+      <table class="data-table" id="data-table">
+        <thead id="table-head"></thead>
+        <tbody id="table-body">
+          <tr><td colspan="8" class="loading-cell">데이터를 불러오는 중...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- 추가/수정 모달 -->
+  <div id="edit-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-title">추가</h3>
+        <button onclick="closeModal()" class="modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <label class="modal-label">이름 <span class="req">*</span></label>
+        <input type="text" id="m-name" class="modal-input" placeholder="이름 입력">
+
+        <label class="modal-label">주소 <span class="req">*</span></label>
+        <div class="addr-row">
+          <input type="text" id="m-address" class="modal-input" placeholder="주소 입력">
+          <button id="geocode-btn" class="btn-sm">위치 검색</button>
+        </div>
+        <div id="geocode-status" class="geo-status"></div>
+
+        <div id="detail-wrap">
+          <label class="modal-label">상세주소</label>
+          <input type="text" id="m-detail" class="modal-input" placeholder="상세주소 (선택)">
+        </div>
+
+        <div class="two-col">
+          <div>
+            <label class="modal-label">시 / 도</label>
+            <input type="text" id="m-region1" class="modal-input" placeholder="서울특별시">
+          </div>
+          <div>
+            <label class="modal-label">구 / 군 / 시</label>
+            <input type="text" id="m-region2" class="modal-input" placeholder="강남구">
+          </div>
+        </div>
+        <p id="m-loc-status" class="geo-status" style="margin-top:6px;"></p>
+      </div>
+      <div class="modal-footer">
+        <button onclick="closeModal()" class="btn-cancel">취소</button>
+        <button onclick="saveModal()" class="btn-save">저장</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="list.js"></script>
+</body>
+</html>

@@ -11,14 +11,28 @@
   <header class="header">
     <div class="header-inner">
       <h1 class="header-title">건강검진기관 지도</h1>
-      <span class="header-subtitle">전국 검진기관 위치 안내</span>
-      <a href="nearby.html" style="color:#90CAF9;font-size:13px;text-decoration:none;margin-left:auto;">🏢 고객사 반경 검색 →</a>
+      <div class="header-nav">
+        <a href="list.html" class="header-nav-btn">📋 목록 관리</a>
+        <a href="nearby.html" class="header-nav-btn">🏢 반경 검색</a>
+      </div>
     </div>
   </header>
 
   <div class="main">
     <!-- 필터 패널 -->
     <aside class="filter-panel">
+      <div class="filter-section">
+        <h2 class="filter-heading">지도 레이어</h2>
+        <label class="layer-toggle">
+          <input type="checkbox" id="layer-facility" checked>
+          <span class="layer-dot facility"></span> 검진기관
+        </label>
+        <label class="layer-toggle">
+          <input type="checkbox" id="layer-client" checked>
+          <span class="layer-dot client"></span> 고객사
+        </label>
+      </div>
+
       <div class="filter-section">
         <h2 class="filter-heading">지역 필터</h2>
         <label class="filter-label" for="region1-select">시 / 도</label>

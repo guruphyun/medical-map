@@ -22,9 +22,26 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   z-index: 100;
 }
-.header-inner { display: flex; align-items: baseline; gap: 12px; }
+.header-inner { display: flex; align-items: center; gap: 12px; width: 100%; }
 .header-title  { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
 .header-subtitle { font-size: 12px; opacity: 0.8; }
+.header-nav { display: flex; gap: 8px; margin-left: auto; }
+.header-nav-btn {
+  color: #90CAF9; font-size: 12px; text-decoration: none;
+  padding: 4px 10px; border: 1px solid rgba(144,202,249,0.5); border-radius: 5px;
+  transition: all 0.2s;
+}
+.header-nav-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* ── 레이어 토글 ── */
+.layer-toggle {
+  display: flex; align-items: center; gap: 7px; cursor: pointer;
+  font-size: 12px; color: #555; padding: 3px 0;
+}
+.layer-toggle input[type=checkbox] { accent-color: #1565C0; width: 14px; height: 14px; cursor: pointer; }
+.layer-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.layer-dot.facility { background: #2196F3; border: 2px solid #1565C0; }
+.layer-dot.client   { background: #FFF176; border: 2px solid #F9A825; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); width: 10px; height: 10px; }
 
 /* ── 메인 ── */
 .main {
