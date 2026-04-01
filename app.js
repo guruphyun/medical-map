@@ -130,12 +130,13 @@ function mergeAndSet(base) {
     .filter(f => !deleted.includes(String(f.id)))
     .map(f => {
       const e = edited[f.id] || edited[String(f.id)];
-      return e ? { ...f, ...e } : f;
+      const obj = e ? { ...f, ...e } : f;
+      return { ...obj, region1: normalizeRegion1(obj.region1 || '') };
     });
 
   const newItems = added
     .filter(f => !deleted.includes(String(f.id)))
-    .map(f => ({ ...f, isNew: true }));
+    .map(f => ({ ...f, isNew: true, region1: normalizeRegion1(f.region1 || '') }));
 
   state.allFacilities = [...merged, ...newItems];
   state.regionIndex   = buildRegionIndex(state.allFacilities);
@@ -144,8 +145,9 @@ function mergeAndSet(base) {
 function buildRegionIndex(facs) {
   const idx = {};
   for (const f of facs) {
-    if (!idx[f.region1]) idx[f.region1] = new Set();
-    idx[f.region1].add(f.region2);
+    const r1 = normalizeRegion1(f.region1 || '');
+    if (!idx[r1]) idx[r1] = new Set();
+    idx[r1].add(f.region2);
   }
   for (const r in idx) idx[r] = [...idx[r]].sort();
   return idx;
