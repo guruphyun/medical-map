@@ -79,13 +79,30 @@ function makeFacilityDot(isBase = false) {
 
 // ── 데이터 로드 ──────────────────────────────────────────
 async function loadData() {
-  const [cr, fr] = await Promise.all([
-    fetch('data/clients.json').then(r => r.json()),
-    fetch('data/facilities.json').then(r => r.json()),
-  ]);
-  applyClientMods(cr);
-  state.facilities = fr;
-  updateStats();
+  try {
+    const [cr, fr] = await Promise.all([
+      fetch('data/clients.json').then(r => r.json()).catch(() => []),
+      fetch('data/facilities.json').then(r => r.json()).catch(() => []),
+    ]);
+    applyClientMods(cleanNan(cr));
+    state.facilities = cleanNan(fr);
+    updateStats();
+  } catch(e) {
+    document.getElementById('stats').textContent = '데이터 로드 오류: ' + e.message;
+  }
+}
+
+function cleanNan(arr) {
+  return (arr || []).map(item => {
+    const cleaned = { ...item };
+    ['name','address','detail','region1','region2'].forEach(k => {
+      if (String(cleaned[k] || '').toLowerCase() === 'nan') cleaned[k] = '';
+    });
+    ['lat','lng'].forEach(k => {
+      if (String(cleaned[k] || '').toLowerCase() === 'nan') cleaned[k] = null;
+    });
+    return cleaned;
+  });
 }
 
 function applyClientMods(base) {

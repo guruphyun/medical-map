@@ -43,9 +43,22 @@ const NORMALIZE = {
 function normalize(n) { return NORMALIZE[n] || n; }
 
 // ── 데이터 로드 ──────────────────────────────────────────
+function cleanNan(arr) {
+  return (arr || []).map(item => {
+    const c = { ...item };
+    ['name','address','detail','region1','region2'].forEach(k => {
+      if (String(c[k]||'').toLowerCase() === 'nan') c[k] = '';
+    });
+    ['lat','lng'].forEach(k => {
+      if (String(c[k]||'').toLowerCase() === 'nan') c[k] = null;
+    });
+    return c;
+  });
+}
+
 async function init() {
   const [fr, cr] = await Promise.all([
-    fetch('data/facilities.json').then(r => r.json()),
+    fetch('data/facilities.json').then(r => r.json()).catch(() => []),
     fetch('data/clients.json').then(r => r.json()).catch(() => []),
   ]);
 
@@ -54,7 +67,7 @@ async function init() {
   const fa = lsGet(LS.FAC_ADDED)  || [];
   const fd = lsGet(LS.FAC_DELETED)|| [];
   app.facilities = [
-    ...fr.filter(f => !fd.includes(String(f.id))).map(f => {
+    ...cleanNan(fr).filter(f => !fd.includes(String(f.id))).map(f => {
       const e = fe[f.id] || fe[String(f.id)];
       const obj = e ? { ...f, ...e } : f;
       return { ...obj, region1: normalize(obj.region1 || '') };
@@ -67,7 +80,7 @@ async function init() {
   const ca = lsGet(LS.CLI_ADDED)  || [];
   const cd = lsGet(LS.CLI_DELETED)|| [];
   app.clients = [
-    ...cr.filter(c => !cd.includes(String(c.id))).map(c => {
+    ...cleanNan(cr).filter(c => !cd.includes(String(c.id))).map(c => {
       const e = ce[c.id] || ce[String(c.id)];
       return e ? { ...c, ...e } : c;
     }),
