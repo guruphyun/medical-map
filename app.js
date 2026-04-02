@@ -102,6 +102,7 @@ function initMap() {
     center: new kakao.maps.LatLng(36.5, 127.8),
     level: 8, draggable: true, scrollwheel: true,
   });
+  window.map = map; // 모바일 탭 전환 시 relayout용
   map.addControl(new kakao.maps.ZoomControl(),    kakao.maps.ControlPosition.RIGHT);
   map.addControl(new kakao.maps.MapTypeControl(), kakao.maps.ControlPosition.TOPRIGHT);
 

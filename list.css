@@ -94,3 +94,61 @@ body { font-family: '맑은 고딕', 'Malgun Gothic', sans-serif; background: #f
 .btn-save:hover { background: #0D47A1; }
 .btn-cancel { padding: 8px 20px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 7px; font-size: 13px; cursor: pointer; font-family: inherit; }
 .btn-cancel:hover { background: #ebebeb; }
+
+/* ── 반응형 모바일 ── */
+@media (max-width: 768px) {
+
+  /* 헤더 */
+  .header { height: 46px; padding: 0 12px; }
+  .header-title { font-size: 15px; }
+  .header-nav-btn { font-size: 11px; padding: 3px 8px; }
+
+  /* 탭 */
+  .tab-bar { padding: 0 12px; }
+  .tab-btn { padding: 10px 14px; font-size: 13px; }
+
+  /* 툴바: 2줄로 */
+  .toolbar { padding: 8px 12px; gap: 7px; }
+  .search-wrap { min-width: 100%; order: -1; }
+  .toolbar-select { flex: 1; min-width: 100px; font-size: 14px; padding: 8px 8px; }
+  .btn-primary { font-size: 13px; padding: 8px 14px; }
+  .list-info { display: none; }
+
+  /* 테이블 래퍼: 가로 스크롤 */
+  .table-wrap { padding: 0 0 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .data-table { min-width: 600px; font-size: 12px; }
+  .data-table th, .data-table td { padding: 8px 10px; }
+
+  /* 불필요한 컬럼 숨김 */
+  .col-no     { display: none; }
+  .col-r2     { display: none; }
+  .col-detail { display: none; }
+
+  /* 이름 컬럼 더 크게 */
+  .col-name { min-width: 120px; font-size: 13px; }
+  .col-r1   { width: 80px; font-size: 12px; }
+  .col-addr { min-width: 160px; font-size: 11px; }
+  .col-act  { width: 90px; }
+
+  /* 액션 버튼 */
+  .btn-edit, .btn-del { padding: 4px 8px; font-size: 11px; }
+
+  /* 페이지네이션 */
+  .pagination { padding: 10px 12px; gap: 3px; flex-wrap: wrap; justify-content: center; }
+  .pagination button { padding: 6px 10px; font-size: 13px; min-width: 36px; }
+
+  /* 모달 */
+  .modal { width: 95vw; }
+  .modal-body { padding: 14px; }
+  .two-col { flex-direction: column; gap: 0; }
+  .addr-row { flex-wrap: wrap; }
+  .addr-row .modal-input { min-width: 0; }
+}
+
+@media (max-width: 480px) {
+  .header-title { font-size: 14px; }
+  .header-nav-btn { display: none; }
+  .tab-btn { padding: 9px 12px; font-size: 12px; }
+  .data-table { min-width: 480px; }
+  .col-addr { min-width: 120px; }
+}

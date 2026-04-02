@@ -18,6 +18,13 @@
     </div>
   </header>
 
+  <!-- 모바일 탭 바 -->
+  <div class="mobile-tab-bar" id="mobile-tab-bar">
+    <button class="mobile-tab active" data-tab="settings" onclick="switchNearbyTab('settings')">⚙️ 설정</button>
+    <button class="mobile-tab" data-tab="map" onclick="switchNearbyTab('map')">🗺️ 지도</button>
+    <button class="mobile-tab" data-tab="results" onclick="switchNearbyTab('results')">📋 결과</button>
+  </div>
+
   <div class="main">
     <!-- 왼쪽 패널: 검색 조건 -->
     <aside class="left-panel">
@@ -156,5 +163,23 @@
   </div>
 
   <script src="nearby.js"></script>
+  <script>
+    /* ── 모바일 탭 전환 (반경 검색 페이지) ── */
+    function switchNearbyTab(tab) {
+      if (window.innerWidth > 768) return;
+      document.querySelectorAll('.mobile-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelector('.left-panel').classList.toggle('mobile-hidden', tab !== 'settings');
+      document.querySelector('.map-wrap').classList.toggle('mobile-hidden', tab !== 'map');
+      document.querySelector('.right-panel').classList.toggle('mobile-hidden', tab !== 'results');
+      if (tab === 'map' && window.nearbyMap) setTimeout(() => window.nearbyMap.relayout(), 50);
+    }
+    if (window.innerWidth <= 768) switchNearbyTab('settings');
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        ['left-panel','map-wrap','right-panel'].forEach(c =>
+          document.querySelector('.' + c)?.classList.remove('mobile-hidden'));
+      }
+    });
+  </script>
 </body>
 </html>

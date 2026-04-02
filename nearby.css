@@ -224,3 +224,94 @@ body { font-family: '맑은 고딕', 'Malgun Gothic', sans-serif; background: #f
 .cm-item-btn.edit:hover { background: #c5d9fb; }
 .cm-item-btn.del { background: #FFEBEE; color: #E53935; }
 .cm-item-btn.del:hover { background: #FFCDD2; }
+
+/* ── 모바일 탭 바 ── */
+.mobile-tab-bar { display: none; }
+
+/* ── 반응형 모바일 (768px 이하) ── */
+@media (max-width: 768px) {
+
+  /* body: overflow 허용 */
+  body { height: 100vh; overflow: hidden; }
+
+  /* 헤더 */
+  .header-inner { padding: 8px 12px; }
+  .header-title { font-size: 14px; }
+  .nav-link { font-size: 12px; }
+
+  /* 모바일 탭 바 */
+  .mobile-tab-bar {
+    display: flex;
+    background: #fff;
+    border-bottom: 2px solid #e0e0e0;
+    flex-shrink: 0;
+  }
+  .mobile-tab {
+    flex: 1; padding: 10px 4px;
+    background: none; border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    color: #999; cursor: pointer; transition: all 0.18s;
+  }
+  .mobile-tab.active { color: #1565C0; border-bottom-color: #1565C0; }
+
+  /* 메인: 세로 스택 */
+  .main { flex-direction: column; overflow: hidden; }
+
+  /* 왼쪽 패널 → 전체 화면 (설정 탭) */
+  .left-panel {
+    width: 100%; min-width: unset;
+    flex: 1; overflow-y: auto;
+    border-right: none; border-bottom: 1px solid #e0e0e0;
+  }
+  .left-panel.mobile-hidden { display: none; }
+
+  /* 지도 → 전체 화면 (지도 탭) */
+  .map-wrap { flex: 1; }
+  .map-wrap.mobile-hidden { display: none; }
+
+  /* 오른쪽 패널 → 전체 화면 (결과 탭) */
+  .right-panel {
+    width: 100%; min-width: unset;
+    flex: 1; overflow: hidden;
+    border-left: none; border-top: 1px solid #e0e0e0;
+  }
+  .right-panel.mobile-hidden { display: none; }
+
+  /* 섹션 패딩 */
+  .section { padding: 12px 14px; }
+
+  /* 모드 버튼 크기 */
+  .mode-btn { font-size: 13px; padding: 9px 6px; }
+
+  /* 검색 인풋 */
+  .search-input { font-size: 14px; padding: 9px 28px 9px 12px; }
+
+  /* 반경 입력 */
+  .radius-num-input { font-size: 16px; width: 80px; }
+  .radius-unit { font-size: 14px; }
+
+  /* 결과 아이템 */
+  .result-item { padding: 10px 12px; }
+  .result-name { font-size: 14px; }
+  .result-sub, .result-addr { font-size: 12px; }
+  .result-dist { font-size: 15px; }
+
+  /* 모달 */
+  .modal { width: 95vw; }
+  .modal-wide { width: 95vw; }
+  .modal-body { padding: 14px; }
+  .region-row { flex-direction: column; gap: 0; }
+  .addr-row { flex-wrap: wrap; }
+
+  /* 고객사 관리 목록 */
+  .cm-manage-list { max-height: 50vh; }
+}
+
+@media (max-width: 480px) {
+  .header-title { font-size: 13px; }
+  .nav-link { display: none; }
+  .mobile-tab { font-size: 12px; }
+  .section-heading { font-size: 10px; }
+}
